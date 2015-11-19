@@ -461,11 +461,6 @@ class Location extends \Protobuf\AbstractMessage
             $writer->writeVarint($stream, $innerSize);
 
             foreach ($this->path as $val) {
-
-                if ($val === null) {
-                    continue;
-                }
-
                 $writer->writeVarint($stream, $val);
             }
         }
@@ -482,11 +477,6 @@ class Location extends \Protobuf\AbstractMessage
             $writer->writeVarint($stream, $innerSize);
 
             foreach ($this->span as $val) {
-
-                if ($val === null) {
-                    continue;
-                }
-
                 $writer->writeVarint($stream, $val);
             }
         }
