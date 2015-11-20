@@ -252,12 +252,16 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\MethodDescriptorProto();
 
@@ -275,6 +279,8 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize  = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\ServiceOptions();
 

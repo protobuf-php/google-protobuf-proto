@@ -459,42 +459,56 @@ class FieldOptions extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 14);
+
                 $this->ctype = \google\protobuf\FieldOptions\CType::valueOf($reader->readVarint($stream));
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->packed = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 6) {
+                \Protobuf\WireFormat::assertWireType($wire, 14);
+
                 $this->jstype = \google\protobuf\FieldOptions\JSType::valueOf($reader->readVarint($stream));
 
                 continue;
             }
 
             if ($tag === 5) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->lazy = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->deprecated = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 10) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->weak = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 999) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\UninterpretedOption();
 

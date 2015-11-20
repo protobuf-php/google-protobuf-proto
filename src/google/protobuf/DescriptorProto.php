@@ -696,12 +696,16 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FieldDescriptorProto();
 
@@ -719,6 +723,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 6) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FieldDescriptorProto();
 
@@ -736,6 +742,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\DescriptorProto();
 
@@ -753,6 +761,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 4) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\EnumDescriptorProto();
 
@@ -770,6 +780,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 5) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\DescriptorProto\ExtensionRange();
 
@@ -787,6 +799,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 8) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\OneofDescriptorProto();
 
@@ -804,6 +818,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 7) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize  = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\MessageOptions();
 
@@ -817,6 +833,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 9) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\DescriptorProto\ReservedRange();
 
@@ -834,6 +852,8 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 10) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
 
                 if ($this->reserved_name === null) {
                     $this->reserved_name = new \Protobuf\ScalarCollection();

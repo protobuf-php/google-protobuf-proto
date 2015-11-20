@@ -574,60 +574,80 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 5);
+
                 $this->number = $reader->readVarint($stream);
 
                 continue;
             }
 
             if ($tag === 4) {
+                \Protobuf\WireFormat::assertWireType($wire, 14);
+
                 $this->label = \google\protobuf\FieldDescriptorProto\Label::valueOf($reader->readVarint($stream));
 
                 continue;
             }
 
             if ($tag === 5) {
+                \Protobuf\WireFormat::assertWireType($wire, 14);
+
                 $this->type = \google\protobuf\FieldDescriptorProto\Type::valueOf($reader->readVarint($stream));
 
                 continue;
             }
 
             if ($tag === 6) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->type_name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->extendee = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 7) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->default_value = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 9) {
+                \Protobuf\WireFormat::assertWireType($wire, 5);
+
                 $this->oneof_index = $reader->readVarint($stream);
 
                 continue;
             }
 
             if ($tag === 10) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->json_name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 8) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize  = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FieldOptions();
 

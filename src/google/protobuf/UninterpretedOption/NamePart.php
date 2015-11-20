@@ -184,12 +184,16 @@ class NamePart extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name_part = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->is_extension = $reader->readBool($stream);
 
                 continue;

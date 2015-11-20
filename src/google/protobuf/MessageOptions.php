@@ -357,30 +357,40 @@ class MessageOptions extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->message_set_wire_format = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->no_standard_descriptor_accessor = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->deprecated = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 7) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->map_entry = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 999) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\UninterpretedOption();
 

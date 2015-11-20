@@ -898,96 +898,128 @@ class FileOptions extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->java_package = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 8) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->java_outer_classname = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 10) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->java_multiple_files = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 20) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->java_generate_equals_and_hash = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 27) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->java_string_check_utf8 = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 9) {
+                \Protobuf\WireFormat::assertWireType($wire, 14);
+
                 $this->optimize_for = \google\protobuf\FileOptions\OptimizeMode::valueOf($reader->readVarint($stream));
 
                 continue;
             }
 
             if ($tag === 11) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->go_package = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 16) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->cc_generic_services = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 17) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->java_generic_services = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 18) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->py_generic_services = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 23) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->deprecated = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 31) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->cc_enable_arenas = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 36) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->objc_class_prefix = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 37) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->csharp_namespace = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 38) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->javanano_use_deprecated_package = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 999) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\UninterpretedOption();
 

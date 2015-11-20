@@ -440,6 +440,8 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\UninterpretedOption\NamePart();
 
@@ -457,36 +459,48 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->identifier_value = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 4) {
+                \Protobuf\WireFormat::assertWireType($wire, 4);
+
                 $this->positive_int_value = $reader->readVarint($stream);
 
                 continue;
             }
 
             if ($tag === 5) {
+                \Protobuf\WireFormat::assertWireType($wire, 3);
+
                 $this->negative_int_value = $reader->readVarint($stream);
 
                 continue;
             }
 
             if ($tag === 6) {
+                \Protobuf\WireFormat::assertWireType($wire, 1);
+
                 $this->double_value = $reader->readDouble($stream);
 
                 continue;
             }
 
             if ($tag === 7) {
+                \Protobuf\WireFormat::assertWireType($wire, 12);
+
                 $this->string_value = $reader->readBytes($stream);
 
                 continue;
             }
 
             if ($tag === 8) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->aggregate_value = $reader->readString($stream);
 
                 continue;

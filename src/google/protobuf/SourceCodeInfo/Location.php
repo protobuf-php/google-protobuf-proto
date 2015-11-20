@@ -406,18 +406,24 @@ class Location extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->leading_comments = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 4) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->trailing_comments = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 6) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
 
                 if ($this->leading_detached_comments === null) {
                     $this->leading_detached_comments = new \Protobuf\ScalarCollection();

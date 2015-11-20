@@ -772,18 +772,24 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->package = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
 
                 if ($this->dependency === null) {
                     $this->dependency = new \Protobuf\ScalarCollection();
@@ -795,6 +801,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 10) {
+                \Protobuf\WireFormat::assertWireType($wire, 5);
+
 
                 if ($this->public_dependency === null) {
                     $this->public_dependency = new \Protobuf\ScalarCollection();
@@ -806,6 +814,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 11) {
+                \Protobuf\WireFormat::assertWireType($wire, 5);
+
 
                 if ($this->weak_dependency === null) {
                     $this->weak_dependency = new \Protobuf\ScalarCollection();
@@ -817,6 +827,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 4) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\DescriptorProto();
 
@@ -834,6 +846,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 5) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\EnumDescriptorProto();
 
@@ -851,6 +865,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 6) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\ServiceDescriptorProto();
 
@@ -868,6 +884,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 7) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FieldDescriptorProto();
 
@@ -885,6 +903,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 8) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize  = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FileOptions();
 
@@ -898,6 +918,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 9) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize  = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\SourceCodeInfo();
 
@@ -911,6 +933,8 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 12) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->syntax = $reader->readString($stream);
 
                 continue;

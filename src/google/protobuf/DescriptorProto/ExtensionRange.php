@@ -184,12 +184,16 @@ class ExtensionRange extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 5);
+
                 $this->start = $reader->readVarint($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 5);
+
                 $this->end = $reader->readVarint($stream);
 
                 continue;

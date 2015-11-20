@@ -136,6 +136,8 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name = $reader->readString($stream);
 
                 continue;

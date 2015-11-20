@@ -209,12 +209,16 @@ class ServiceOptions extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 33) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->deprecated = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 999) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\UninterpretedOption();
 

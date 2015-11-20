@@ -391,24 +391,32 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->input_type = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 3) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->output_type = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 4) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize  = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\MethodOptions();
 
@@ -422,12 +430,16 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 5) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->client_streaming = $reader->readBool($stream);
 
                 continue;
             }
 
             if ($tag === 6) {
+                \Protobuf\WireFormat::assertWireType($wire, 8);
+
                 $this->server_streaming = $reader->readBool($stream);
 
                 continue;
