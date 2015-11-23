@@ -27,6 +27,8 @@ namespace google\protobuf;
  *       label=3,
  *       reference="google.protobuf.UninterpretedOption"
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -37,6 +39,11 @@ class ServiceOptions extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * deprecated optional bool = 33
@@ -133,11 +140,25 @@ class ServiceOptions extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap();
     }
 
     /**
@@ -161,6 +182,10 @@ class ServiceOptions extends \Protobuf\AbstractMessage
                 $size += $innerSize;
                 $size += $calculator->computeVarintSize($innerSize);
             }
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -267,6 +292,10 @@ class ServiceOptions extends \Protobuf\AbstractMessage
                 $writer->writeVarint($stream, $val->serializedSize($sizeContext));
                 $val->writeTo($context);
             }
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
         }
 
         return $stream;

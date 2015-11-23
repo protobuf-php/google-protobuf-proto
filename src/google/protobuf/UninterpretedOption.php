@@ -56,6 +56,8 @@ namespace google\protobuf;
  *       type=9,
  *       label=1
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -66,6 +68,11 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * name repeated message = 2
@@ -339,11 +346,25 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap();
     }
 
     /**
@@ -392,6 +413,10 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
         if ($this->aggregate_value !== null) {
             $size += 1;
             $size += $calculator->computeStringSize($this->aggregate_value);
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -563,6 +588,10 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
         if ($this->aggregate_value !== null) {
             $writer->writeVarint($stream, 66);
             $writer->writeString($stream, $this->aggregate_value);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
         }
 
         return $stream;

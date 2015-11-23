@@ -91,6 +91,8 @@ namespace google\protobuf;
  *       type=9,
  *       label=1
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -101,6 +103,11 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * name optional string = 1
@@ -619,11 +626,25 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap();
     }
 
     /**
@@ -726,6 +747,10 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $size += $calculator->computeStringSize($this->syntax);
         }
 
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
+        }
+
         return $size;
     }
 
@@ -790,7 +815,6 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             if ($tag === 3) {
                 \Protobuf\WireFormat::assertWireType($wire, 9);
 
-
                 if ($this->dependency === null) {
                     $this->dependency = new \Protobuf\ScalarCollection();
                 }
@@ -803,7 +827,6 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             if ($tag === 10) {
                 \Protobuf\WireFormat::assertWireType($wire, 5);
 
-
                 if ($this->public_dependency === null) {
                     $this->public_dependency = new \Protobuf\ScalarCollection();
                 }
@@ -815,7 +838,6 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
 
             if ($tag === 11) {
                 \Protobuf\WireFormat::assertWireType($wire, 5);
-
 
                 if ($this->weak_dependency === null) {
                     $this->weak_dependency = new \Protobuf\ScalarCollection();
@@ -905,7 +927,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             if ($tag === 8) {
                 \Protobuf\WireFormat::assertWireType($wire, 11);
 
-                $innerSize  = $reader->readVarint($stream);
+                $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FileOptions();
 
                 $this->options = $innerMessage;
@@ -920,7 +942,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             if ($tag === 9) {
                 \Protobuf\WireFormat::assertWireType($wire, 11);
 
-                $innerSize  = $reader->readVarint($stream);
+                $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\SourceCodeInfo();
 
                 $this->source_code_info = $innerMessage;
@@ -1039,6 +1061,10 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
         if ($this->syntax !== null) {
             $writer->writeVarint($stream, 98);
             $writer->writeString($stream, $this->syntax);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
         }
 
         return $stream;

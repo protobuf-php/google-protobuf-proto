@@ -76,6 +76,8 @@ namespace google\protobuf;
  *       label=1,
  *       reference="google.protobuf.FieldOptions"
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -86,6 +88,11 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * name optional string = 1
@@ -460,11 +467,25 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap();
     }
 
     /**
@@ -526,6 +547,10 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
             $size += 1;
             $size += $innerSize;
             $size += $calculator->computeVarintSize($innerSize);
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -648,7 +673,7 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
             if ($tag === 8) {
                 \Protobuf\WireFormat::assertWireType($wire, 11);
 
-                $innerSize  = $reader->readVarint($stream);
+                $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FieldOptions();
 
                 $this->options = $innerMessage;
@@ -730,6 +755,10 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
             $writer->writeVarint($stream, 66);
             $writer->writeVarint($stream, $this->options->serializedSize($sizeContext));
             $this->options->writeTo($context);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
         }
 
         return $stream;

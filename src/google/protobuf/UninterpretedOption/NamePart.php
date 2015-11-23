@@ -25,6 +25,8 @@ namespace google\protobuf\UninterpretedOption;
  *       type=8,
  *       label=2
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -35,6 +37,11 @@ class NamePart extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * name_part required string = 1
@@ -113,11 +120,25 @@ class NamePart extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap();
     }
 
     /**
@@ -136,6 +157,10 @@ class NamePart extends \Protobuf\AbstractMessage
         if ($this->is_extension !== null) {
             $size += 1;
             $size += 1;
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -236,6 +261,10 @@ class NamePart extends \Protobuf\AbstractMessage
         if ($this->is_extension !== null) {
             $writer->writeVarint($stream, 16);
             $writer->writeBool($stream, $this->is_extension);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
         }
 
         return $stream;

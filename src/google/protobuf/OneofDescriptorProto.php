@@ -19,6 +19,8 @@ namespace google\protobuf;
  *       type=9,
  *       label=1
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -29,6 +31,11 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * name optional string = 1
@@ -70,11 +77,25 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap();
     }
 
     /**
@@ -88,6 +109,10 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
         if ($this->name !== null) {
             $size += 1;
             $size += $calculator->computeStringSize($this->name);
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -167,6 +192,10 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
         if ($this->name !== null) {
             $writer->writeVarint($stream, 10);
             $writer->writeString($stream, $this->name);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
         }
 
         return $stream;

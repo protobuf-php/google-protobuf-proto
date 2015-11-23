@@ -45,6 +45,8 @@ namespace google\protobuf\SourceCodeInfo;
  *       type=9,
  *       label=3
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -55,6 +57,11 @@ class Location extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * path repeated int32 = 1
@@ -274,11 +281,25 @@ class Location extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap();
     }
 
     /**
@@ -328,6 +349,10 @@ class Location extends \Protobuf\AbstractMessage
                 $size += 1;
                 $size += $calculator->computeStringSize($val);
             }
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -424,7 +449,6 @@ class Location extends \Protobuf\AbstractMessage
             if ($tag === 6) {
                 \Protobuf\WireFormat::assertWireType($wire, 9);
 
-
                 if ($this->leading_detached_comments === null) {
                     $this->leading_detached_comments = new \Protobuf\ScalarCollection();
                 }
@@ -502,6 +526,10 @@ class Location extends \Protobuf\AbstractMessage
                 $writer->writeVarint($stream, 50);
                 $writer->writeString($stream, $val);
             }
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
         }
 
         return $stream;
