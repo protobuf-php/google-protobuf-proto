@@ -299,7 +299,7 @@ class Location extends \Protobuf\AbstractMessage
             return $this->extensions;
         }
 
-        return $this->extensions = new \Protobuf\ExtensionFieldMap(self::CLASS);
+        return $this->extensions = new \Protobuf\ExtensionFieldMap(__CLASS__);
     }
 
     /**
@@ -459,7 +459,7 @@ class Location extends \Protobuf\AbstractMessage
             }
 
             $extensions = $context->getExtensionRegistry();
-            $extension  = $extensions ? $extensions->findByNumber(self::CLASS, $tag) : null;
+            $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
                 $this->extensions()->put($extension, $extension->readFrom($context, $wire));
