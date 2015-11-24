@@ -106,7 +106,7 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
             return $this->extensions;
         }
 
-        return $this->extensions = new \Protobuf\ExtensionFieldMap();
+        return $this->extensions = new \Protobuf\ExtensionFieldMap(self::CLASS);
     }
 
     /**
@@ -195,6 +195,15 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
                 continue;
             }
 
+            $extensions = $context->getExtensionRegistry();
+            $extension  = $extensions ? $extensions->findByNumber(self::CLASS, $tag) : null;
+
+            if ($extension !== null) {
+                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+
+                continue;
+            }
+
             if ($this->unknownFieldSet === null) {
                 $this->unknownFieldSet = new \Protobuf\UnknownFieldSet();
             }
@@ -237,7 +246,7 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = new \Protobuf\ReadContext($stream, $config->getStreamReader());
+        $context = $config->createReadContext($stream);
         $message = new \google\protobuf\SourceCodeInfo();
 
         $message->readFrom($context);
