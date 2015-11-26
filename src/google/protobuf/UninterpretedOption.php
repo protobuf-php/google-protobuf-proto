@@ -613,7 +613,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
         $context = $config->createReadContext($stream);
-        $message = new \google\protobuf\UninterpretedOption();
+        $message = new self();
 
         $message->readFrom($context);
 

@@ -286,7 +286,7 @@ class NamePart extends \Protobuf\AbstractMessage
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
         $context = $config->createReadContext($stream);
-        $message = new \google\protobuf\UninterpretedOption\NamePart();
+        $message = new self();
 
         $message->readFrom($context);
 

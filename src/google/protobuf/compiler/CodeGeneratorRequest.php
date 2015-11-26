@@ -32,6 +32,8 @@ namespace google\protobuf\compiler;
  *       label=3,
  *       reference="google.protobuf.FileDescriptorProto"
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -42,6 +44,11 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * file_to_generate repeated string = 1
@@ -177,11 +184,25 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap(__CLASS__);
     }
 
     /**
@@ -212,6 +233,10 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
                 $size += $innerSize;
                 $size += $calculator->computeVarintSize($innerSize);
             }
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -260,6 +285,7 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
 
                 if ($this->file_to_generate === null) {
                     $this->file_to_generate = new \Protobuf\ScalarCollection();
@@ -271,12 +297,16 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->parameter = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 15) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\FileDescriptorProto();
 
@@ -289,6 +319,15 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
                 $context->setLength($innerSize);
                 $innerMessage->readFrom($context);
                 $context->setLength($length);
+
+                continue;
+            }
+
+            $extensions = $context->getExtensionRegistry();
+            $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
+
+            if ($extension !== null) {
+                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -334,6 +373,10 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
             }
         }
 
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
+
         return $stream;
     }
 
@@ -343,8 +386,8 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = new \Protobuf\ReadContext($stream, $config->getStreamReader());
-        $message = new \google\protobuf\compiler\CodeGeneratorRequest();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
         $message->readFrom($context);
 

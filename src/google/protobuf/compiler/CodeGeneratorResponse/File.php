@@ -31,6 +31,8 @@ namespace google\protobuf\compiler\CodeGeneratorResponse;
  *       type=9,
  *       label=1
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -41,6 +43,11 @@ class File extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * name optional string = 1
@@ -156,11 +163,25 @@ class File extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap(__CLASS__);
     }
 
     /**
@@ -184,6 +205,10 @@ class File extends \Protobuf\AbstractMessage
         if ($this->content !== null) {
             $size += 1;
             $size += $calculator->computeStringSize($this->content);
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -232,19 +257,34 @@ class File extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->name = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 2) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->insertion_point = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 15) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->content = $reader->readString($stream);
+
+                continue;
+            }
+
+            $extensions = $context->getExtensionRegistry();
+            $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
+
+            if ($extension !== null) {
+                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -285,6 +325,10 @@ class File extends \Protobuf\AbstractMessage
             $writer->writeString($stream, $this->content);
         }
 
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
+
         return $stream;
     }
 
@@ -294,8 +338,8 @@ class File extends \Protobuf\AbstractMessage
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = new \Protobuf\ReadContext($stream, $config->getStreamReader());
-        $message = new \google\protobuf\compiler\CodeGeneratorResponse\File();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
         $message->readFrom($context);
 

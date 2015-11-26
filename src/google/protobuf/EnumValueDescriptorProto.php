@@ -351,7 +351,7 @@ class EnumValueDescriptorProto extends \Protobuf\AbstractMessage
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
         $context = $config->createReadContext($stream);
-        $message = new \google\protobuf\EnumValueDescriptorProto();
+        $message = new self();
 
         $message->readFrom($context);
 

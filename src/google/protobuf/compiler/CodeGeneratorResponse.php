@@ -26,6 +26,8 @@ namespace google\protobuf\compiler;
  *       label=3,
  *       reference="google.protobuf.compiler.CodeGeneratorResponse.File"
  *     )
+ *   },
+ *   extensions={
  *   }
  * )
  */
@@ -36,6 +38,11 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
      * @var \Protobuf\UnknownFieldSet
      */
     protected $unknownFieldSet = null;
+
+    /**
+     * @var \Protobuf\ExtensionFieldMap
+     */
+    protected $extensions = null;
 
     /**
      * error optional string = 1
@@ -124,11 +131,25 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
     /**
      * Get unknown values
      *
-     * @return Protobuf\UnknownFieldSet
+     * @return \Protobuf\UnknownFieldSet
      */
     public function unknownFieldSet()
     {
         return $this->unknownFieldSet;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return \Protobuf\ExtensionFieldMap
+     */
+    public function extensions()
+    {
+        if ( $this->extensions !== null) {
+            return $this->extensions;
+        }
+
+        return $this->extensions = new \Protobuf\ExtensionFieldMap(__CLASS__);
     }
 
     /**
@@ -152,6 +173,10 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
                 $size += $innerSize;
                 $size += $calculator->computeVarintSize($innerSize);
             }
+        }
+
+        if ($this->extensions !== null) {
+            $size += $this->extensions->serializedSize($context);
         }
 
         return $size;
@@ -200,12 +225,16 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
             }
 
             if ($tag === 1) {
+                \Protobuf\WireFormat::assertWireType($wire, 9);
+
                 $this->error = $reader->readString($stream);
 
                 continue;
             }
 
             if ($tag === 15) {
+                \Protobuf\WireFormat::assertWireType($wire, 11);
+
                 $innerSize    = $reader->readVarint($stream);
                 $innerMessage = new \google\protobuf\compiler\CodeGeneratorResponse\File();
 
@@ -218,6 +247,15 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
                 $context->setLength($innerSize);
                 $innerMessage->readFrom($context);
                 $context->setLength($length);
+
+                continue;
+            }
+
+            $extensions = $context->getExtensionRegistry();
+            $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
+
+            if ($extension !== null) {
+                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -256,6 +294,10 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
             }
         }
 
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
+
         return $stream;
     }
 
@@ -265,8 +307,8 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = new \Protobuf\ReadContext($stream, $config->getStreamReader());
-        $message = new \google\protobuf\compiler\CodeGeneratorResponse();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
         $message->readFrom($context);
 

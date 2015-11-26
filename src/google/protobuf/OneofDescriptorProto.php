@@ -217,7 +217,7 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
         $context = $config->createReadContext($stream);
-        $message = new \google\protobuf\OneofDescriptorProto();
+        $message = new self();
 
         $message->readFrom($context);
 

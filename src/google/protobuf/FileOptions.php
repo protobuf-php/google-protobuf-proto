@@ -1188,7 +1188,7 @@ class FileOptions extends \Protobuf\AbstractMessage
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
         $context = $config->createReadContext($stream);
-        $message = new \google\protobuf\FileOptions();
+        $message = new self();
 
         $message->readFrom($context);
 

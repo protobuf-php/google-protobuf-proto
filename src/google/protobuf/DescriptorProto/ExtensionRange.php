@@ -278,7 +278,7 @@ class ExtensionRange extends \Protobuf\AbstractMessage
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
         $context = $config->createReadContext($stream);
-        $message = new \google\protobuf\DescriptorProto\ExtensionRange();
+        $message = new self();
 
         $message->readFrom($context);
 
