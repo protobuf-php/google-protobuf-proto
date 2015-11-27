@@ -4,12 +4,12 @@
  */
 
 
-namespace php;
+namespace google\protobuf\php;
 
 /**
  * Protobuf extension : php
  */
-class Extension implements \Protobuf\ExtensionMessage
+class Extension implements \Protobuf\Extension
 {
 
     /**
@@ -29,12 +29,12 @@ class Extension implements \Protobuf\ExtensionMessage
     /**
      * Register all extensions
      *
-     * @param \Protobuf\Configuration
+     * @param \Protobuf\Extension\ExtensionRegistry
      */
-    public static function registerAllExtensions(\Protobuf\Configuration $configuration)
+    public static function registerAllExtensions(\Protobuf\Extension\ExtensionRegistry $registry)
     {
-        $configuration->registerExtension(self::package());
-        $configuration->registerExtension(self::generic_services());
+        $registry->add(self::package());
+        $registry->add(self::generic_services());
     }
 
     /**
@@ -77,10 +77,9 @@ class Extension implements \Protobuf\ExtensionMessage
             $size += $calculator->computeStringSize($value);
 
             return $size;
-
         };
 
-        return self::$package = new \Protobuf\Extension('\\google\\protobuf\\FileOptions', 'package', 50002, $readCallback, $writeCallback, $sizeCallback);
+        return self::$package = new \Protobuf\Extension\ExtensionField('\\google\\protobuf\\FileOptions', 'package', 50002, $readCallback, $writeCallback, $sizeCallback);
     }
 
     /**
@@ -123,10 +122,9 @@ class Extension implements \Protobuf\ExtensionMessage
             $size += 1;
 
             return $size;
-
         };
 
-        return self::$generic_services = new \Protobuf\Extension('\\google\\protobuf\\FileOptions', 'generic_services', 50003, $readCallback, $writeCallback, $sizeCallback);
+        return self::$generic_services = new \Protobuf\Extension\ExtensionField('\\google\\protobuf\\FileOptions', 'generic_services', 50003, $readCallback, $writeCallback, $sizeCallback);
     }
 
 

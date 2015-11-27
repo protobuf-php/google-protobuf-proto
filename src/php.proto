@@ -2,6 +2,8 @@ import "descriptor.proto";
 
 package php;
 
+option (php.package) = "google.protobuf.php";
+
 extend google.protobuf.FileOptions
 {
     // Set the namespace (overrides package)

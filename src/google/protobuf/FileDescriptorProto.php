@@ -105,7 +105,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
     protected $unknownFieldSet = null;
 
     /**
-     * @var \Protobuf\ExtensionFieldMap
+     * @var \Protobuf\Extension\ExtensionFieldMap
      */
     protected $extensions = null;
 
@@ -636,7 +636,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      *
-     * @return \Protobuf\ExtensionFieldMap
+     * @return \Protobuf\Extension\ExtensionFieldMap
      */
     public function extensions()
     {
@@ -644,7 +644,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             return $this->extensions;
         }
 
-        return $this->extensions = new \Protobuf\ExtensionFieldMap(__CLASS__);
+        return $this->extensions = new \Protobuf\Extension\ExtensionFieldMap(__CLASS__);
     }
 
     /**
