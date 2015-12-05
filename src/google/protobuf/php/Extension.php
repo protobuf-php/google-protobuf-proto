@@ -36,7 +36,7 @@ class Extension implements \Protobuf\Extension
     public static function registerAllExtensions(\Protobuf\Extension\ExtensionRegistry $registry)
     {
         $registry->add(self::package());
-        $registry->add(self::generic_services());
+        $registry->add(self::genericServices());
     }
 
     /**
@@ -89,7 +89,7 @@ class Extension implements \Protobuf\Extension
      *
      * @return \Protobuf\Extension
      */
-    public static function generic_services()
+    public static function genericServices()
     {
         if (self::$generic_services !== null) {
             return self::$generic_services;
@@ -131,3 +131,4 @@ class Extension implements \Protobuf\Extension
 
 
 }
+

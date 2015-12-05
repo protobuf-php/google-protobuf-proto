@@ -114,7 +114,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * string_value optional bytes = 7
      *
-     * @var string
+     * @var \Protobuf\Stream
      */
     protected $string_value = null;
 
@@ -302,7 +302,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * Get 'string_value' value
      *
-     * @return string
+     * @return \Protobuf\Stream
      */
     public function getStringValue()
     {
@@ -312,9 +312,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * Set 'string_value' value
      *
-     * @param string $value
+     * @param \Protobuf\Stream $value
      */
-    public function setStringValue($value)
+    public function setStringValue(\Protobuf\Stream $value)
     {
         return $this->string_value = $value;
     }
@@ -350,9 +350,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     }
 
     /**
-     * Get unknown values
-     *
-     * @return \Protobuf\UnknownFieldSet
+     * {@inheritdoc}
      */
     public function unknownFieldSet()
     {
@@ -361,8 +359,6 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
 
     /**
      * {@inheritdoc}
-     *
-     * @return \Protobuf\Extension\ExtensionFieldMap
      */
     public function extensions()
     {
@@ -413,7 +409,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
 
         if ($this->string_value !== null) {
             $size += 1;
-            $size += $calculator->computeStringSize($this->string_value);
+            $size += $calculator->computeByteStreamSize($this->string_value);
         }
 
         if ($this->aggregate_value !== null) {
@@ -524,7 +520,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
             if ($tag === 7) {
                 \Protobuf\WireFormat::assertWireType($wire, 12);
 
-                $this->string_value = $reader->readBytes($stream);
+                $this->string_value = $reader->readByteStream($stream);
 
                 continue;
             }
@@ -597,7 +593,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
 
         if ($this->string_value !== null) {
             $writer->writeVarint($stream, 58);
-            $writer->writeString($stream, $this->string_value);
+            $writer->writeByteStream($stream, $this->string_value);
         }
 
         if ($this->aggregate_value !== null) {

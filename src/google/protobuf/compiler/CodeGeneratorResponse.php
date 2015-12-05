@@ -135,9 +135,7 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
     }
 
     /**
-     * Get unknown values
-     *
-     * @return \Protobuf\UnknownFieldSet
+     * {@inheritdoc}
      */
     public function unknownFieldSet()
     {
@@ -146,8 +144,6 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
 
     /**
      * {@inheritdoc}
-     *
-     * @return \Protobuf\Extension\ExtensionFieldMap
      */
     public function extensions()
     {
