@@ -122,14 +122,6 @@ class ReservedRange extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -142,26 +134,23 @@ class ReservedRange extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->start !== null) {
-            $size += 1;
-            $size += $calculator->computeVarintSize($this->start);
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-        if ($this->end !== null) {
-            $size += 1;
-            $size += $calculator->computeVarintSize($this->end);
-        }
+        $message->readFrom($context);
 
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -175,6 +164,32 @@ class ReservedRange extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->start !== null) {
+            $writer->writeVarint($stream, 8);
+            $writer->writeVarint($stream, $this->start);
+        }
+
+        if ($this->end !== null) {
+            $writer->writeVarint($stream, 16);
+            $writer->writeVarint($stream, $this->end);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -246,41 +261,26 @@ class ReservedRange extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->start !== null) {
-            $writer->writeVarint($stream, 8);
-            $writer->writeVarint($stream, $this->start);
+            $size += 1;
+            $size += $calculator->computeVarintSize($this->start);
         }
 
         if ($this->end !== null) {
-            $writer->writeVarint($stream, 16);
-            $writer->writeVarint($stream, $this->end);
+            $size += 1;
+            $size += $calculator->computeVarintSize($this->end);
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

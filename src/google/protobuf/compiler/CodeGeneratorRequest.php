@@ -194,14 +194,6 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -214,38 +206,23 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->file_to_generate !== null) {
-            foreach ($this->file_to_generate as $val) {
-                $size += 1;
-                $size += $calculator->computeStringSize($val);
-            }
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-        if ($this->parameter !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->parameter);
-        }
+        $message->readFrom($context);
 
-        if ($this->proto_file !== null) {
-            foreach ($this->proto_file as $val) {
-                $innerSize = $val->serializedSize($context);
-
-                $size += 1;
-                $size += $innerSize;
-                $size += $calculator->computeVarintSize($innerSize);
-            }
-        }
-
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -259,6 +236,42 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->file_to_generate !== null) {
+            foreach ($this->file_to_generate as $val) {
+                $writer->writeVarint($stream, 10);
+                $writer->writeString($stream, $val);
+            }
+        }
+
+        if ($this->parameter !== null) {
+            $writer->writeVarint($stream, 18);
+            $writer->writeString($stream, $this->parameter);
+        }
+
+        if ($this->proto_file !== null) {
+            foreach ($this->proto_file as $val) {
+                $writer->writeVarint($stream, 122);
+                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
+                $val->writeTo($context);
+            }
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -353,51 +366,38 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->file_to_generate !== null) {
             foreach ($this->file_to_generate as $val) {
-                $writer->writeVarint($stream, 10);
-                $writer->writeString($stream, $val);
+                $size += 1;
+                $size += $calculator->computeStringSize($val);
             }
         }
 
         if ($this->parameter !== null) {
-            $writer->writeVarint($stream, 18);
-            $writer->writeString($stream, $this->parameter);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->parameter);
         }
 
         if ($this->proto_file !== null) {
             foreach ($this->proto_file as $val) {
-                $writer->writeVarint($stream, 122);
-                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
-                $val->writeTo($context);
+                $innerSize = $val->serializedSize($context);
+
+                $size += 1;
+                $size += $innerSize;
+                $size += $calculator->computeVarintSize($innerSize);
             }
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

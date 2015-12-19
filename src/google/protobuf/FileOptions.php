@@ -765,14 +765,6 @@ class FileOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -785,101 +777,23 @@ class FileOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->java_package !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->java_package);
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-        if ($this->java_outer_classname !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->java_outer_classname);
-        }
+        $message->readFrom($context);
 
-        if ($this->java_multiple_files !== null) {
-            $size += 1;
-            $size += 1;
-        }
-
-        if ($this->java_generate_equals_and_hash !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->java_string_check_utf8 !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->optimize_for !== null) {
-            $size += 1;
-            $size += $calculator->computeVarintSize($this->optimize_for->value());
-        }
-
-        if ($this->go_package !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->go_package);
-        }
-
-        if ($this->cc_generic_services !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->java_generic_services !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->py_generic_services !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->deprecated !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->cc_enable_arenas !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->objc_class_prefix !== null) {
-            $size += 2;
-            $size += $calculator->computeStringSize($this->objc_class_prefix);
-        }
-
-        if ($this->csharp_namespace !== null) {
-            $size += 2;
-            $size += $calculator->computeStringSize($this->csharp_namespace);
-        }
-
-        if ($this->javanano_use_deprecated_package !== null) {
-            $size += 2;
-            $size += 1;
-        }
-
-        if ($this->uninterpreted_option !== null) {
-            foreach ($this->uninterpreted_option as $val) {
-                $innerSize = $val->serializedSize($context);
-
-                $size += 2;
-                $size += $innerSize;
-                $size += $calculator->computeVarintSize($innerSize);
-            }
-        }
-
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -893,6 +807,105 @@ class FileOptions extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->java_package !== null) {
+            $writer->writeVarint($stream, 10);
+            $writer->writeString($stream, $this->java_package);
+        }
+
+        if ($this->java_outer_classname !== null) {
+            $writer->writeVarint($stream, 66);
+            $writer->writeString($stream, $this->java_outer_classname);
+        }
+
+        if ($this->java_multiple_files !== null) {
+            $writer->writeVarint($stream, 80);
+            $writer->writeBool($stream, $this->java_multiple_files);
+        }
+
+        if ($this->java_generate_equals_and_hash !== null) {
+            $writer->writeVarint($stream, 160);
+            $writer->writeBool($stream, $this->java_generate_equals_and_hash);
+        }
+
+        if ($this->java_string_check_utf8 !== null) {
+            $writer->writeVarint($stream, 216);
+            $writer->writeBool($stream, $this->java_string_check_utf8);
+        }
+
+        if ($this->optimize_for !== null) {
+            $writer->writeVarint($stream, 72);
+            $writer->writeVarint($stream, $this->optimize_for->value());
+        }
+
+        if ($this->go_package !== null) {
+            $writer->writeVarint($stream, 90);
+            $writer->writeString($stream, $this->go_package);
+        }
+
+        if ($this->cc_generic_services !== null) {
+            $writer->writeVarint($stream, 128);
+            $writer->writeBool($stream, $this->cc_generic_services);
+        }
+
+        if ($this->java_generic_services !== null) {
+            $writer->writeVarint($stream, 136);
+            $writer->writeBool($stream, $this->java_generic_services);
+        }
+
+        if ($this->py_generic_services !== null) {
+            $writer->writeVarint($stream, 144);
+            $writer->writeBool($stream, $this->py_generic_services);
+        }
+
+        if ($this->deprecated !== null) {
+            $writer->writeVarint($stream, 184);
+            $writer->writeBool($stream, $this->deprecated);
+        }
+
+        if ($this->cc_enable_arenas !== null) {
+            $writer->writeVarint($stream, 248);
+            $writer->writeBool($stream, $this->cc_enable_arenas);
+        }
+
+        if ($this->objc_class_prefix !== null) {
+            $writer->writeVarint($stream, 290);
+            $writer->writeString($stream, $this->objc_class_prefix);
+        }
+
+        if ($this->csharp_namespace !== null) {
+            $writer->writeVarint($stream, 298);
+            $writer->writeString($stream, $this->csharp_namespace);
+        }
+
+        if ($this->javanano_use_deprecated_package !== null) {
+            $writer->writeVarint($stream, 304);
+            $writer->writeBool($stream, $this->javanano_use_deprecated_package);
+        }
+
+        if ($this->uninterpreted_option !== null) {
+            foreach ($this->uninterpreted_option as $val) {
+                $writer->writeVarint($stream, 7994);
+                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
+                $val->writeTo($context);
+            }
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -1087,114 +1100,101 @@ class FileOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->java_package !== null) {
-            $writer->writeVarint($stream, 10);
-            $writer->writeString($stream, $this->java_package);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->java_package);
         }
 
         if ($this->java_outer_classname !== null) {
-            $writer->writeVarint($stream, 66);
-            $writer->writeString($stream, $this->java_outer_classname);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->java_outer_classname);
         }
 
         if ($this->java_multiple_files !== null) {
-            $writer->writeVarint($stream, 80);
-            $writer->writeBool($stream, $this->java_multiple_files);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->java_generate_equals_and_hash !== null) {
-            $writer->writeVarint($stream, 160);
-            $writer->writeBool($stream, $this->java_generate_equals_and_hash);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->java_string_check_utf8 !== null) {
-            $writer->writeVarint($stream, 216);
-            $writer->writeBool($stream, $this->java_string_check_utf8);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->optimize_for !== null) {
-            $writer->writeVarint($stream, 72);
-            $writer->writeVarint($stream, $this->optimize_for->value());
+            $size += 1;
+            $size += $calculator->computeVarintSize($this->optimize_for->value());
         }
 
         if ($this->go_package !== null) {
-            $writer->writeVarint($stream, 90);
-            $writer->writeString($stream, $this->go_package);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->go_package);
         }
 
         if ($this->cc_generic_services !== null) {
-            $writer->writeVarint($stream, 128);
-            $writer->writeBool($stream, $this->cc_generic_services);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->java_generic_services !== null) {
-            $writer->writeVarint($stream, 136);
-            $writer->writeBool($stream, $this->java_generic_services);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->py_generic_services !== null) {
-            $writer->writeVarint($stream, 144);
-            $writer->writeBool($stream, $this->py_generic_services);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->deprecated !== null) {
-            $writer->writeVarint($stream, 184);
-            $writer->writeBool($stream, $this->deprecated);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->cc_enable_arenas !== null) {
-            $writer->writeVarint($stream, 248);
-            $writer->writeBool($stream, $this->cc_enable_arenas);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->objc_class_prefix !== null) {
-            $writer->writeVarint($stream, 290);
-            $writer->writeString($stream, $this->objc_class_prefix);
+            $size += 2;
+            $size += $calculator->computeStringSize($this->objc_class_prefix);
         }
 
         if ($this->csharp_namespace !== null) {
-            $writer->writeVarint($stream, 298);
-            $writer->writeString($stream, $this->csharp_namespace);
+            $size += 2;
+            $size += $calculator->computeStringSize($this->csharp_namespace);
         }
 
         if ($this->javanano_use_deprecated_package !== null) {
-            $writer->writeVarint($stream, 304);
-            $writer->writeBool($stream, $this->javanano_use_deprecated_package);
+            $size += 2;
+            $size += 1;
         }
 
         if ($this->uninterpreted_option !== null) {
             foreach ($this->uninterpreted_option as $val) {
-                $writer->writeVarint($stream, 7994);
-                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
-                $val->writeTo($context);
+                $innerSize = $val->serializedSize($context);
+
+                $size += 2;
+                $size += $innerSize;
+                $size += $calculator->computeVarintSize($innerSize);
             }
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

@@ -295,14 +295,6 @@ class Location extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -315,57 +307,23 @@ class Location extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->path !== null) {
-            $innerSize = 0;
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-            foreach ($this->path as $val) {
-                $innerSize += $calculator->computeVarintSize($val);
-            }
+        $message->readFrom($context);
 
-            $size += 1;
-            $size += $innerSize;
-            $size += $calculator->computeVarintSize($innerSize);
-        }
-
-        if ($this->span !== null) {
-            $innerSize = 0;
-
-            foreach ($this->span as $val) {
-                $innerSize += $calculator->computeVarintSize($val);
-            }
-
-            $size += 1;
-            $size += $innerSize;
-            $size += $calculator->computeVarintSize($innerSize);
-        }
-
-        if ($this->leading_comments !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->leading_comments);
-        }
-
-        if ($this->trailing_comments !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->trailing_comments);
-        }
-
-        if ($this->leading_detached_comments !== null) {
-            foreach ($this->leading_detached_comments as $val) {
-                $size += 1;
-                $size += $calculator->computeStringSize($val);
-            }
-        }
-
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -379,6 +337,71 @@ class Location extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->path !== null) {
+            $innerSize   = 0;
+            $calculator  = $sizeContext->getSizeCalculator();
+
+            foreach ($this->path as $val) {
+                $innerSize += $calculator->computeVarintSize($val);
+            }
+
+            $writer->writeVarint($stream, 10);
+            $writer->writeVarint($stream, $innerSize);
+
+            foreach ($this->path as $val) {
+                $writer->writeVarint($stream, $val);
+            }
+        }
+
+        if ($this->span !== null) {
+            $innerSize   = 0;
+            $calculator  = $sizeContext->getSizeCalculator();
+
+            foreach ($this->span as $val) {
+                $innerSize += $calculator->computeVarintSize($val);
+            }
+
+            $writer->writeVarint($stream, 18);
+            $writer->writeVarint($stream, $innerSize);
+
+            foreach ($this->span as $val) {
+                $writer->writeVarint($stream, $val);
+            }
+        }
+
+        if ($this->leading_comments !== null) {
+            $writer->writeVarint($stream, 26);
+            $writer->writeString($stream, $this->leading_comments);
+        }
+
+        if ($this->trailing_comments !== null) {
+            $writer->writeVarint($stream, 34);
+            $writer->writeString($stream, $this->trailing_comments);
+        }
+
+        if ($this->leading_detached_comments !== null) {
+            foreach ($this->leading_detached_comments as $val) {
+                $writer->writeVarint($stream, 50);
+                $writer->writeString($stream, $val);
+            }
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -492,80 +515,57 @@ class Location extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->path !== null) {
-            $innerSize   = 0;
-            $calculator  = $sizeContext->getSizeCalculator();
+            $innerSize = 0;
 
             foreach ($this->path as $val) {
                 $innerSize += $calculator->computeVarintSize($val);
             }
 
-            $writer->writeVarint($stream, 10);
-            $writer->writeVarint($stream, $innerSize);
-
-            foreach ($this->path as $val) {
-                $writer->writeVarint($stream, $val);
-            }
+            $size += 1;
+            $size += $innerSize;
+            $size += $calculator->computeVarintSize($innerSize);
         }
 
         if ($this->span !== null) {
-            $innerSize   = 0;
-            $calculator  = $sizeContext->getSizeCalculator();
+            $innerSize = 0;
 
             foreach ($this->span as $val) {
                 $innerSize += $calculator->computeVarintSize($val);
             }
 
-            $writer->writeVarint($stream, 18);
-            $writer->writeVarint($stream, $innerSize);
-
-            foreach ($this->span as $val) {
-                $writer->writeVarint($stream, $val);
-            }
+            $size += 1;
+            $size += $innerSize;
+            $size += $calculator->computeVarintSize($innerSize);
         }
 
         if ($this->leading_comments !== null) {
-            $writer->writeVarint($stream, 26);
-            $writer->writeString($stream, $this->leading_comments);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->leading_comments);
         }
 
         if ($this->trailing_comments !== null) {
-            $writer->writeVarint($stream, 34);
-            $writer->writeString($stream, $this->trailing_comments);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->trailing_comments);
         }
 
         if ($this->leading_detached_comments !== null) {
             foreach ($this->leading_detached_comments as $val) {
-                $writer->writeVarint($stream, 50);
-                $writer->writeString($stream, $val);
+                $size += 1;
+                $size += $calculator->computeStringSize($val);
             }
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

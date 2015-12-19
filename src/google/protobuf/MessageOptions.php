@@ -279,14 +279,6 @@ class MessageOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -299,46 +291,23 @@ class MessageOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->message_set_wire_format !== null) {
-            $size += 1;
-            $size += 1;
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-        if ($this->no_standard_descriptor_accessor !== null) {
-            $size += 1;
-            $size += 1;
-        }
+        $message->readFrom($context);
 
-        if ($this->deprecated !== null) {
-            $size += 1;
-            $size += 1;
-        }
-
-        if ($this->map_entry !== null) {
-            $size += 1;
-            $size += 1;
-        }
-
-        if ($this->uninterpreted_option !== null) {
-            foreach ($this->uninterpreted_option as $val) {
-                $innerSize = $val->serializedSize($context);
-
-                $size += 2;
-                $size += $innerSize;
-                $size += $calculator->computeVarintSize($innerSize);
-            }
-        }
-
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -352,6 +321,50 @@ class MessageOptions extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->message_set_wire_format !== null) {
+            $writer->writeVarint($stream, 8);
+            $writer->writeBool($stream, $this->message_set_wire_format);
+        }
+
+        if ($this->no_standard_descriptor_accessor !== null) {
+            $writer->writeVarint($stream, 16);
+            $writer->writeBool($stream, $this->no_standard_descriptor_accessor);
+        }
+
+        if ($this->deprecated !== null) {
+            $writer->writeVarint($stream, 24);
+            $writer->writeBool($stream, $this->deprecated);
+        }
+
+        if ($this->map_entry !== null) {
+            $writer->writeVarint($stream, 56);
+            $writer->writeBool($stream, $this->map_entry);
+        }
+
+        if ($this->uninterpreted_option !== null) {
+            foreach ($this->uninterpreted_option as $val) {
+                $writer->writeVarint($stream, 7994);
+                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
+                $val->writeTo($context);
+            }
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -458,59 +471,46 @@ class MessageOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->message_set_wire_format !== null) {
-            $writer->writeVarint($stream, 8);
-            $writer->writeBool($stream, $this->message_set_wire_format);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->no_standard_descriptor_accessor !== null) {
-            $writer->writeVarint($stream, 16);
-            $writer->writeBool($stream, $this->no_standard_descriptor_accessor);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->deprecated !== null) {
-            $writer->writeVarint($stream, 24);
-            $writer->writeBool($stream, $this->deprecated);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->map_entry !== null) {
-            $writer->writeVarint($stream, 56);
-            $writer->writeBool($stream, $this->map_entry);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->uninterpreted_option !== null) {
             foreach ($this->uninterpreted_option as $val) {
-                $writer->writeVarint($stream, 7994);
-                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
-                $val->writeTo($context);
+                $innerSize = $val->serializedSize($context);
+
+                $size += 2;
+                $size += $innerSize;
+                $size += $calculator->computeVarintSize($innerSize);
             }
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

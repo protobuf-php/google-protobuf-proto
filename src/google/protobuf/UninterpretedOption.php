@@ -352,14 +352,6 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -372,56 +364,23 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->name !== null) {
-            foreach ($this->name as $val) {
-                $innerSize = $val->serializedSize($context);
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-                $size += 1;
-                $size += $innerSize;
-                $size += $calculator->computeVarintSize($innerSize);
-            }
-        }
+        $message->readFrom($context);
 
-        if ($this->identifier_value !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->identifier_value);
-        }
-
-        if ($this->positive_int_value !== null) {
-            $size += 1;
-            $size += $calculator->computeVarintSize($this->positive_int_value);
-        }
-
-        if ($this->negative_int_value !== null) {
-            $size += 1;
-            $size += $calculator->computeVarintSize($this->negative_int_value);
-        }
-
-        if ($this->double_value !== null) {
-            $size += 1;
-            $size += 8;
-        }
-
-        if ($this->string_value !== null) {
-            $size += 1;
-            $size += $calculator->computeByteStreamSize($this->string_value);
-        }
-
-        if ($this->aggregate_value !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->aggregate_value);
-        }
-
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -435,6 +394,60 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->name !== null) {
+            foreach ($this->name as $val) {
+                $writer->writeVarint($stream, 18);
+                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
+                $val->writeTo($context);
+            }
+        }
+
+        if ($this->identifier_value !== null) {
+            $writer->writeVarint($stream, 26);
+            $writer->writeString($stream, $this->identifier_value);
+        }
+
+        if ($this->positive_int_value !== null) {
+            $writer->writeVarint($stream, 32);
+            $writer->writeVarint($stream, $this->positive_int_value);
+        }
+
+        if ($this->negative_int_value !== null) {
+            $writer->writeVarint($stream, 40);
+            $writer->writeVarint($stream, $this->negative_int_value);
+        }
+
+        if ($this->double_value !== null) {
+            $writer->writeVarint($stream, 49);
+            $writer->writeDouble($stream, $this->double_value);
+        }
+
+        if ($this->string_value !== null) {
+            $writer->writeVarint($stream, 58);
+            $writer->writeByteStream($stream, $this->string_value);
+        }
+
+        if ($this->aggregate_value !== null) {
+            $writer->writeVarint($stream, 66);
+            $writer->writeString($stream, $this->aggregate_value);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -557,69 +570,56 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->name !== null) {
             foreach ($this->name as $val) {
-                $writer->writeVarint($stream, 18);
-                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
-                $val->writeTo($context);
+                $innerSize = $val->serializedSize($context);
+
+                $size += 1;
+                $size += $innerSize;
+                $size += $calculator->computeVarintSize($innerSize);
             }
         }
 
         if ($this->identifier_value !== null) {
-            $writer->writeVarint($stream, 26);
-            $writer->writeString($stream, $this->identifier_value);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->identifier_value);
         }
 
         if ($this->positive_int_value !== null) {
-            $writer->writeVarint($stream, 32);
-            $writer->writeVarint($stream, $this->positive_int_value);
+            $size += 1;
+            $size += $calculator->computeVarintSize($this->positive_int_value);
         }
 
         if ($this->negative_int_value !== null) {
-            $writer->writeVarint($stream, 40);
-            $writer->writeVarint($stream, $this->negative_int_value);
+            $size += 1;
+            $size += $calculator->computeVarintSize($this->negative_int_value);
         }
 
         if ($this->double_value !== null) {
-            $writer->writeVarint($stream, 49);
-            $writer->writeDouble($stream, $this->double_value);
+            $size += 1;
+            $size += 8;
         }
 
         if ($this->string_value !== null) {
-            $writer->writeVarint($stream, 58);
-            $writer->writeByteStream($stream, $this->string_value);
+            $size += 1;
+            $size += $calculator->computeByteStreamSize($this->string_value);
         }
 
         if ($this->aggregate_value !== null) {
-            $writer->writeVarint($stream, 66);
-            $writer->writeString($stream, $this->aggregate_value);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->aggregate_value);
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

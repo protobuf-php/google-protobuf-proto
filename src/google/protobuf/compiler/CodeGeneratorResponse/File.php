@@ -165,14 +165,6 @@ class File extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -185,31 +177,23 @@ class File extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->name !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->name);
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-        if ($this->insertion_point !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->insertion_point);
-        }
+        $message->readFrom($context);
 
-        if ($this->content !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->content);
-        }
-
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -223,6 +207,37 @@ class File extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->name !== null) {
+            $writer->writeVarint($stream, 10);
+            $writer->writeString($stream, $this->name);
+        }
+
+        if ($this->insertion_point !== null) {
+            $writer->writeVarint($stream, 18);
+            $writer->writeString($stream, $this->insertion_point);
+        }
+
+        if ($this->content !== null) {
+            $writer->writeVarint($stream, 122);
+            $writer->writeString($stream, $this->content);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -302,46 +317,31 @@ class File extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->name !== null) {
-            $writer->writeVarint($stream, 10);
-            $writer->writeString($stream, $this->name);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->name);
         }
 
         if ($this->insertion_point !== null) {
-            $writer->writeVarint($stream, 18);
-            $writer->writeString($stream, $this->insertion_point);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->insertion_point);
         }
 
         if ($this->content !== null) {
-            $writer->writeVarint($stream, 122);
-            $writer->writeString($stream, $this->content);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->content);
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

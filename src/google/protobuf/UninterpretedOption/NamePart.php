@@ -122,14 +122,6 @@ class NamePart extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -142,26 +134,23 @@ class NamePart extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->name_part !== null) {
-            $size += 1;
-            $size += $calculator->computeStringSize($this->name_part);
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-        if ($this->is_extension !== null) {
-            $size += 1;
-            $size += 1;
-        }
+        $message->readFrom($context);
 
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -175,6 +164,40 @@ class NamePart extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->name_part === null) {
+            throw new \UnexpectedValueException('Field "\\google\\protobuf\\UninterpretedOption\\NamePart#name_part" (tag 1) is required but has no value.');
+        }
+
+        if ($this->is_extension === null) {
+            throw new \UnexpectedValueException('Field "\\google\\protobuf\\UninterpretedOption\\NamePart#is_extension" (tag 2) is required but has no value.');
+        }
+
+        if ($this->name_part !== null) {
+            $writer->writeVarint($stream, 10);
+            $writer->writeString($stream, $this->name_part);
+        }
+
+        if ($this->is_extension !== null) {
+            $writer->writeVarint($stream, 16);
+            $writer->writeBool($stream, $this->is_extension);
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -246,49 +269,26 @@ class NamePart extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
-
-        if ($this->name_part === null) {
-            throw new \UnexpectedValueException('Field "\\google\\protobuf\\UninterpretedOption\\NamePart#name_part" (tag 1) is required but has no value.');
-        }
-
-        if ($this->is_extension === null) {
-            throw new \UnexpectedValueException('Field "\\google\\protobuf\\UninterpretedOption\\NamePart#is_extension" (tag 2) is required but has no value.');
-        }
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->name_part !== null) {
-            $writer->writeVarint($stream, 10);
-            $writer->writeString($stream, $this->name_part);
+            $size += 1;
+            $size += $calculator->computeStringSize($this->name_part);
         }
 
         if ($this->is_extension !== null) {
-            $writer->writeVarint($stream, 16);
-            $writer->writeBool($stream, $this->is_extension);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 

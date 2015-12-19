@@ -371,14 +371,6 @@ class FieldOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function unknownFieldSet()
-    {
-        return $this->unknownFieldSet;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function extensions()
     {
         if ( $this->extensions !== null) {
@@ -391,56 +383,23 @@ class FieldOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function serializedSize(\Protobuf\ComputeSizeContext $context)
+    public function unknownFieldSet()
     {
-        $calculator = $context->getSizeCalculator();
-        $size       = 0;
+        return $this->unknownFieldSet;
+    }
 
-        if ($this->ctype !== null) {
-            $size += 1;
-            $size += $calculator->computeVarintSize($this->ctype->value());
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
+    {
+        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
+        $context = $config->createReadContext($stream);
+        $message = new self();
 
-        if ($this->packed !== null) {
-            $size += 1;
-            $size += 1;
-        }
+        $message->readFrom($context);
 
-        if ($this->jstype !== null) {
-            $size += 1;
-            $size += $calculator->computeVarintSize($this->jstype->value());
-        }
-
-        if ($this->lazy !== null) {
-            $size += 1;
-            $size += 1;
-        }
-
-        if ($this->deprecated !== null) {
-            $size += 1;
-            $size += 1;
-        }
-
-        if ($this->weak !== null) {
-            $size += 1;
-            $size += 1;
-        }
-
-        if ($this->uninterpreted_option !== null) {
-            foreach ($this->uninterpreted_option as $val) {
-                $innerSize = $val->serializedSize($context);
-
-                $size += 2;
-                $size += $innerSize;
-                $size += $calculator->computeVarintSize($innerSize);
-            }
-        }
-
-        if ($this->extensions !== null) {
-            $size += $this->extensions->serializedSize($context);
-        }
-
-        return $size;
+        return $message;
     }
 
     /**
@@ -454,6 +413,60 @@ class FieldOptions extends \Protobuf\AbstractMessage
 
         $this->writeTo($context);
         $stream->seek(0);
+
+        return $stream;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function writeTo(\Protobuf\WriteContext $context)
+    {
+        $stream      = $context->getStream();
+        $writer      = $context->getWriter();
+        $sizeContext = $context->getComputeSizeContext();
+
+        if ($this->ctype !== null) {
+            $writer->writeVarint($stream, 8);
+            $writer->writeVarint($stream, $this->ctype->value());
+        }
+
+        if ($this->packed !== null) {
+            $writer->writeVarint($stream, 16);
+            $writer->writeBool($stream, $this->packed);
+        }
+
+        if ($this->jstype !== null) {
+            $writer->writeVarint($stream, 48);
+            $writer->writeVarint($stream, $this->jstype->value());
+        }
+
+        if ($this->lazy !== null) {
+            $writer->writeVarint($stream, 40);
+            $writer->writeBool($stream, $this->lazy);
+        }
+
+        if ($this->deprecated !== null) {
+            $writer->writeVarint($stream, 24);
+            $writer->writeBool($stream, $this->deprecated);
+        }
+
+        if ($this->weak !== null) {
+            $writer->writeVarint($stream, 80);
+            $writer->writeBool($stream, $this->weak);
+        }
+
+        if ($this->uninterpreted_option !== null) {
+            foreach ($this->uninterpreted_option as $val) {
+                $writer->writeVarint($stream, 7994);
+                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
+                $val->writeTo($context);
+            }
+        }
+
+        if ($this->extensions !== null) {
+            $this->extensions->writeTo($context);
+        }
 
         return $stream;
     }
@@ -576,69 +589,56 @@ class FieldOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
-    public function writeTo(\Protobuf\WriteContext $context)
+    public function serializedSize(\Protobuf\ComputeSizeContext $context)
     {
-        $stream      = $context->getStream();
-        $writer      = $context->getWriter();
-        $sizeContext = $context->getComputeSizeContext();
+        $calculator = $context->getSizeCalculator();
+        $size       = 0;
 
         if ($this->ctype !== null) {
-            $writer->writeVarint($stream, 8);
-            $writer->writeVarint($stream, $this->ctype->value());
+            $size += 1;
+            $size += $calculator->computeVarintSize($this->ctype->value());
         }
 
         if ($this->packed !== null) {
-            $writer->writeVarint($stream, 16);
-            $writer->writeBool($stream, $this->packed);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->jstype !== null) {
-            $writer->writeVarint($stream, 48);
-            $writer->writeVarint($stream, $this->jstype->value());
+            $size += 1;
+            $size += $calculator->computeVarintSize($this->jstype->value());
         }
 
         if ($this->lazy !== null) {
-            $writer->writeVarint($stream, 40);
-            $writer->writeBool($stream, $this->lazy);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->deprecated !== null) {
-            $writer->writeVarint($stream, 24);
-            $writer->writeBool($stream, $this->deprecated);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->weak !== null) {
-            $writer->writeVarint($stream, 80);
-            $writer->writeBool($stream, $this->weak);
+            $size += 1;
+            $size += 1;
         }
 
         if ($this->uninterpreted_option !== null) {
             foreach ($this->uninterpreted_option as $val) {
-                $writer->writeVarint($stream, 7994);
-                $writer->writeVarint($stream, $val->serializedSize($sizeContext));
-                $val->writeTo($context);
+                $innerSize = $val->serializedSize($context);
+
+                $size += 2;
+                $size += $innerSize;
+                $size += $calculator->computeVarintSize($innerSize);
             }
         }
 
         if ($this->extensions !== null) {
-            $this->extensions->writeTo($context);
+            $size += $this->extensions->serializedSize($context);
         }
 
-        return $stream;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
-    {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return $size;
     }
 
 
