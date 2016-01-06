@@ -150,9 +150,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\UninterpretedOption\NamePart> $value
      */
-    public function setNameList(\Protobuf\Collection $value)
+    public function setNameList(\Protobuf\Collection $value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -166,7 +166,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
             $this->name = new \Protobuf\MessageCollection();
         }
 
-        $this->name[] = $value;
+        $this->name->add($value);
     }
 
     /**
@@ -194,9 +194,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setIdentifierValue($value)
+    public function setIdentifierValue($value = null)
     {
-        return $this->identifier_value = $value;
+        $this->identifier_value = $value;
     }
 
     /**
@@ -224,9 +224,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      *
      * @param int $value
      */
-    public function setPositiveIntValue($value)
+    public function setPositiveIntValue($value = null)
     {
-        return $this->positive_int_value = $value;
+        $this->positive_int_value = $value;
     }
 
     /**
@@ -254,9 +254,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      *
      * @param int $value
      */
-    public function setNegativeIntValue($value)
+    public function setNegativeIntValue($value = null)
     {
-        return $this->negative_int_value = $value;
+        $this->negative_int_value = $value;
     }
 
     /**
@@ -284,9 +284,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      *
      * @param float $value
      */
-    public function setDoubleValue($value)
+    public function setDoubleValue($value = null)
     {
-        return $this->double_value = $value;
+        $this->double_value = $value;
     }
 
     /**
@@ -314,9 +314,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Stream $value
      */
-    public function setStringValue(\Protobuf\Stream $value)
+    public function setStringValue($value = null)
     {
-        return $this->string_value = $value;
+        $this->string_value = \Protobuf\Stream::wrap($value);
     }
 
     /**
@@ -344,9 +344,9 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setAggregateValue($value)
+    public function setAggregateValue($value = null)
     {
-        return $this->aggregate_value = $value;
+        $this->aggregate_value = $value;
     }
 
     /**
@@ -374,13 +374,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -620,6 +614,20 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->identifier_value = null;
+        $this->positive_int_value = null;
+        $this->negative_int_value = null;
+        $this->double_value = null;
+        $this->string_value = null;
+        $this->aggregate_value = null;
     }
 
 

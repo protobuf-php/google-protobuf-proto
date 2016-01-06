@@ -86,7 +86,7 @@ class NamePart extends \Protobuf\AbstractMessage
      */
     public function setNamePart($value)
     {
-        return $this->name_part = $value;
+        $this->name_part = $value;
     }
 
     /**
@@ -116,7 +116,7 @@ class NamePart extends \Protobuf\AbstractMessage
      */
     public function setIsExtension($value)
     {
-        return $this->is_extension = $value;
+        $this->is_extension = $value;
     }
 
     /**
@@ -144,13 +144,7 @@ class NamePart extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -289,6 +283,15 @@ class NamePart extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name_part = null;
+        $this->is_extension = null;
     }
 
 

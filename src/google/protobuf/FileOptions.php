@@ -253,9 +253,9 @@ class FileOptions extends \Protobuf\AbstractMessage
     protected $uninterpreted_option = null;
 
     /**
-     * Constructor
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __construct($stream = null, \Protobuf\Configuration $configuration = null)
     {
         $this->java_multiple_files = false;
         $this->java_generate_equals_and_hash = false;
@@ -266,6 +266,8 @@ class FileOptions extends \Protobuf\AbstractMessage
         $this->py_generic_services = false;
         $this->deprecated = false;
         $this->cc_enable_arenas = false;
+
+        parent::__construct($stream, $configuration);
     }
 
     /**
@@ -293,9 +295,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setJavaPackage($value)
+    public function setJavaPackage($value = null)
     {
-        return $this->java_package = $value;
+        $this->java_package = $value;
     }
 
     /**
@@ -323,9 +325,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setJavaOuterClassname($value)
+    public function setJavaOuterClassname($value = null)
     {
-        return $this->java_outer_classname = $value;
+        $this->java_outer_classname = $value;
     }
 
     /**
@@ -353,9 +355,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setJavaMultipleFiles($value)
+    public function setJavaMultipleFiles($value = null)
     {
-        return $this->java_multiple_files = $value;
+        $this->java_multiple_files = $value;
     }
 
     /**
@@ -383,9 +385,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setJavaGenerateEqualsAndHash($value)
+    public function setJavaGenerateEqualsAndHash($value = null)
     {
-        return $this->java_generate_equals_and_hash = $value;
+        $this->java_generate_equals_and_hash = $value;
     }
 
     /**
@@ -413,9 +415,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setJavaStringCheckUtf8($value)
+    public function setJavaStringCheckUtf8($value = null)
     {
-        return $this->java_string_check_utf8 = $value;
+        $this->java_string_check_utf8 = $value;
     }
 
     /**
@@ -443,9 +445,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\FileOptions\OptimizeMode $value
      */
-    public function setOptimizeFor(\google\protobuf\FileOptions\OptimizeMode $value)
+    public function setOptimizeFor(\google\protobuf\FileOptions\OptimizeMode $value = null)
     {
-        return $this->optimize_for = $value;
+        $this->optimize_for = $value;
     }
 
     /**
@@ -473,9 +475,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setGoPackage($value)
+    public function setGoPackage($value = null)
     {
-        return $this->go_package = $value;
+        $this->go_package = $value;
     }
 
     /**
@@ -503,9 +505,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setCcGenericServices($value)
+    public function setCcGenericServices($value = null)
     {
-        return $this->cc_generic_services = $value;
+        $this->cc_generic_services = $value;
     }
 
     /**
@@ -533,9 +535,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setJavaGenericServices($value)
+    public function setJavaGenericServices($value = null)
     {
-        return $this->java_generic_services = $value;
+        $this->java_generic_services = $value;
     }
 
     /**
@@ -563,9 +565,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setPyGenericServices($value)
+    public function setPyGenericServices($value = null)
     {
-        return $this->py_generic_services = $value;
+        $this->py_generic_services = $value;
     }
 
     /**
@@ -593,9 +595,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setDeprecated($value)
+    public function setDeprecated($value = null)
     {
-        return $this->deprecated = $value;
+        $this->deprecated = $value;
     }
 
     /**
@@ -623,9 +625,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setCcEnableArenas($value)
+    public function setCcEnableArenas($value = null)
     {
-        return $this->cc_enable_arenas = $value;
+        $this->cc_enable_arenas = $value;
     }
 
     /**
@@ -653,9 +655,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setObjcClassPrefix($value)
+    public function setObjcClassPrefix($value = null)
     {
-        return $this->objc_class_prefix = $value;
+        $this->objc_class_prefix = $value;
     }
 
     /**
@@ -683,9 +685,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setCsharpNamespace($value)
+    public function setCsharpNamespace($value = null)
     {
-        return $this->csharp_namespace = $value;
+        $this->csharp_namespace = $value;
     }
 
     /**
@@ -713,9 +715,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setJavananoUseDeprecatedPackage($value)
+    public function setJavananoUseDeprecatedPackage($value = null)
     {
-        return $this->javanano_use_deprecated_package = $value;
+        $this->javanano_use_deprecated_package = $value;
     }
 
     /**
@@ -743,9 +745,9 @@ class FileOptions extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\UninterpretedOption> $value
      */
-    public function setUninterpretedOptionList(\Protobuf\Collection $value)
+    public function setUninterpretedOptionList(\Protobuf\Collection $value = null)
     {
-        return $this->uninterpreted_option = $value;
+        $this->uninterpreted_option = $value;
     }
 
     /**
@@ -759,7 +761,7 @@ class FileOptions extends \Protobuf\AbstractMessage
             $this->uninterpreted_option = new \Protobuf\MessageCollection();
         }
 
-        $this->uninterpreted_option[] = $value;
+        $this->uninterpreted_option->add($value);
     }
 
     /**
@@ -787,13 +789,7 @@ class FileOptions extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -1195,6 +1191,29 @@ class FileOptions extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->java_package = null;
+        $this->java_outer_classname = null;
+        $this->java_multiple_files = false;
+        $this->java_generate_equals_and_hash = false;
+        $this->java_string_check_utf8 = false;
+        $this->optimize_for = \google\protobuf\FileOptions\OptimizeMode::SPEED();
+        $this->go_package = null;
+        $this->cc_generic_services = false;
+        $this->java_generic_services = false;
+        $this->py_generic_services = false;
+        $this->deprecated = false;
+        $this->cc_enable_arenas = false;
+        $this->objc_class_prefix = null;
+        $this->csharp_namespace = null;
+        $this->javanano_use_deprecated_package = null;
+        $this->uninterpreted_option = null;
     }
 
 

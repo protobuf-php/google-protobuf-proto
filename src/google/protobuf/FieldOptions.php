@@ -133,15 +133,17 @@ class FieldOptions extends \Protobuf\AbstractMessage
     protected $uninterpreted_option = null;
 
     /**
-     * Constructor
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __construct($stream = null, \Protobuf\Configuration $configuration = null)
     {
         $this->ctype = \google\protobuf\FieldOptions\CType::STRING();
         $this->jstype = \google\protobuf\FieldOptions\JSType::JS_NORMAL();
         $this->lazy = false;
         $this->deprecated = false;
         $this->weak = false;
+
+        parent::__construct($stream, $configuration);
     }
 
     /**
@@ -169,9 +171,9 @@ class FieldOptions extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\FieldOptions\CType $value
      */
-    public function setCtype(\google\protobuf\FieldOptions\CType $value)
+    public function setCtype(\google\protobuf\FieldOptions\CType $value = null)
     {
-        return $this->ctype = $value;
+        $this->ctype = $value;
     }
 
     /**
@@ -199,9 +201,9 @@ class FieldOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setPacked($value)
+    public function setPacked($value = null)
     {
-        return $this->packed = $value;
+        $this->packed = $value;
     }
 
     /**
@@ -229,9 +231,9 @@ class FieldOptions extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\FieldOptions\JSType $value
      */
-    public function setJstype(\google\protobuf\FieldOptions\JSType $value)
+    public function setJstype(\google\protobuf\FieldOptions\JSType $value = null)
     {
-        return $this->jstype = $value;
+        $this->jstype = $value;
     }
 
     /**
@@ -259,9 +261,9 @@ class FieldOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setLazy($value)
+    public function setLazy($value = null)
     {
-        return $this->lazy = $value;
+        $this->lazy = $value;
     }
 
     /**
@@ -289,9 +291,9 @@ class FieldOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setDeprecated($value)
+    public function setDeprecated($value = null)
     {
-        return $this->deprecated = $value;
+        $this->deprecated = $value;
     }
 
     /**
@@ -319,9 +321,9 @@ class FieldOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setWeak($value)
+    public function setWeak($value = null)
     {
-        return $this->weak = $value;
+        $this->weak = $value;
     }
 
     /**
@@ -349,9 +351,9 @@ class FieldOptions extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\UninterpretedOption> $value
      */
-    public function setUninterpretedOptionList(\Protobuf\Collection $value)
+    public function setUninterpretedOptionList(\Protobuf\Collection $value = null)
     {
-        return $this->uninterpreted_option = $value;
+        $this->uninterpreted_option = $value;
     }
 
     /**
@@ -365,7 +367,7 @@ class FieldOptions extends \Protobuf\AbstractMessage
             $this->uninterpreted_option = new \Protobuf\MessageCollection();
         }
 
-        $this->uninterpreted_option[] = $value;
+        $this->uninterpreted_option->add($value);
     }
 
     /**
@@ -393,13 +395,7 @@ class FieldOptions extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -639,6 +635,20 @@ class FieldOptions extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->ctype = \google\protobuf\FieldOptions\CType::STRING();
+        $this->packed = null;
+        $this->jstype = \google\protobuf\FieldOptions\JSType::JS_NORMAL();
+        $this->lazy = false;
+        $this->deprecated = false;
+        $this->weak = false;
+        $this->uninterpreted_option = null;
     }
 
 

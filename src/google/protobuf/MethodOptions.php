@@ -62,11 +62,13 @@ class MethodOptions extends \Protobuf\AbstractMessage
     protected $uninterpreted_option = null;
 
     /**
-     * Constructor
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __construct($stream = null, \Protobuf\Configuration $configuration = null)
     {
         $this->deprecated = false;
+
+        parent::__construct($stream, $configuration);
     }
 
     /**
@@ -94,9 +96,9 @@ class MethodOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setDeprecated($value)
+    public function setDeprecated($value = null)
     {
-        return $this->deprecated = $value;
+        $this->deprecated = $value;
     }
 
     /**
@@ -124,9 +126,9 @@ class MethodOptions extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\UninterpretedOption> $value
      */
-    public function setUninterpretedOptionList(\Protobuf\Collection $value)
+    public function setUninterpretedOptionList(\Protobuf\Collection $value = null)
     {
-        return $this->uninterpreted_option = $value;
+        $this->uninterpreted_option = $value;
     }
 
     /**
@@ -140,7 +142,7 @@ class MethodOptions extends \Protobuf\AbstractMessage
             $this->uninterpreted_option = new \Protobuf\MessageCollection();
         }
 
-        $this->uninterpreted_option[] = $value;
+        $this->uninterpreted_option->add($value);
     }
 
     /**
@@ -168,13 +170,7 @@ class MethodOptions extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -324,6 +320,15 @@ class MethodOptions extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->deprecated = false;
+        $this->uninterpreted_option = null;
     }
 
 

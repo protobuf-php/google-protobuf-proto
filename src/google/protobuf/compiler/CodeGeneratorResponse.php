@@ -85,9 +85,9 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setError($value)
+    public function setError($value = null)
     {
-        return $this->error = $value;
+        $this->error = $value;
     }
 
     /**
@@ -115,9 +115,9 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\compiler\CodeGeneratorResponse\File> $value
      */
-    public function setFileList(\Protobuf\Collection $value)
+    public function setFileList(\Protobuf\Collection $value = null)
     {
-        return $this->file = $value;
+        $this->file = $value;
     }
 
     /**
@@ -131,7 +131,7 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
             $this->file = new \Protobuf\MessageCollection();
         }
 
-        $this->file[] = $value;
+        $this->file->add($value);
     }
 
     /**
@@ -159,13 +159,7 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -315,6 +309,15 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->error = null;
+        $this->file = null;
     }
 
 

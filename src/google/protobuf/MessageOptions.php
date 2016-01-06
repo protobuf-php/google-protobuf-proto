@@ -103,13 +103,15 @@ class MessageOptions extends \Protobuf\AbstractMessage
     protected $uninterpreted_option = null;
 
     /**
-     * Constructor
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __construct($stream = null, \Protobuf\Configuration $configuration = null)
     {
         $this->message_set_wire_format = false;
         $this->no_standard_descriptor_accessor = false;
         $this->deprecated = false;
+
+        parent::__construct($stream, $configuration);
     }
 
     /**
@@ -137,9 +139,9 @@ class MessageOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setMessageSetWireFormat($value)
+    public function setMessageSetWireFormat($value = null)
     {
-        return $this->message_set_wire_format = $value;
+        $this->message_set_wire_format = $value;
     }
 
     /**
@@ -167,9 +169,9 @@ class MessageOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setNoStandardDescriptorAccessor($value)
+    public function setNoStandardDescriptorAccessor($value = null)
     {
-        return $this->no_standard_descriptor_accessor = $value;
+        $this->no_standard_descriptor_accessor = $value;
     }
 
     /**
@@ -197,9 +199,9 @@ class MessageOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setDeprecated($value)
+    public function setDeprecated($value = null)
     {
-        return $this->deprecated = $value;
+        $this->deprecated = $value;
     }
 
     /**
@@ -227,9 +229,9 @@ class MessageOptions extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setMapEntry($value)
+    public function setMapEntry($value = null)
     {
-        return $this->map_entry = $value;
+        $this->map_entry = $value;
     }
 
     /**
@@ -257,9 +259,9 @@ class MessageOptions extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\UninterpretedOption> $value
      */
-    public function setUninterpretedOptionList(\Protobuf\Collection $value)
+    public function setUninterpretedOptionList(\Protobuf\Collection $value = null)
     {
-        return $this->uninterpreted_option = $value;
+        $this->uninterpreted_option = $value;
     }
 
     /**
@@ -273,7 +275,7 @@ class MessageOptions extends \Protobuf\AbstractMessage
             $this->uninterpreted_option = new \Protobuf\MessageCollection();
         }
 
-        $this->uninterpreted_option[] = $value;
+        $this->uninterpreted_option->add($value);
     }
 
     /**
@@ -301,13 +303,7 @@ class MessageOptions extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -511,6 +507,18 @@ class MessageOptions extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->message_set_wire_format = false;
+        $this->no_standard_descriptor_accessor = false;
+        $this->deprecated = false;
+        $this->map_entry = null;
+        $this->uninterpreted_option = null;
     }
 
 

@@ -98,9 +98,9 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setFileToGenerateList(\Protobuf\Collection $value)
+    public function setFileToGenerateList(\Protobuf\Collection $value = null)
     {
-        return $this->file_to_generate = $value;
+        $this->file_to_generate = $value;
     }
 
     /**
@@ -114,7 +114,7 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
             $this->file_to_generate = new \Protobuf\ScalarCollection();
         }
 
-        $this->file_to_generate[] = $value;
+        $this->file_to_generate->add($value);
     }
 
     /**
@@ -142,9 +142,9 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setParameter($value)
+    public function setParameter($value = null)
     {
-        return $this->parameter = $value;
+        $this->parameter = $value;
     }
 
     /**
@@ -172,9 +172,9 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\FileDescriptorProto> $value
      */
-    public function setProtoFileList(\Protobuf\Collection $value)
+    public function setProtoFileList(\Protobuf\Collection $value = null)
     {
-        return $this->proto_file = $value;
+        $this->proto_file = $value;
     }
 
     /**
@@ -188,7 +188,7 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
             $this->proto_file = new \Protobuf\MessageCollection();
         }
 
-        $this->proto_file[] = $value;
+        $this->proto_file->add($value);
     }
 
     /**
@@ -216,13 +216,7 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -398,6 +392,16 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->file_to_generate = null;
+        $this->parameter = null;
+        $this->proto_file = null;
     }
 
 

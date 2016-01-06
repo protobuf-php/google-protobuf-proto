@@ -115,12 +115,14 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
     protected $server_streaming = null;
 
     /**
-     * Constructor
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __construct($stream = null, \Protobuf\Configuration $configuration = null)
     {
         $this->client_streaming = false;
         $this->server_streaming = false;
+
+        parent::__construct($stream, $configuration);
     }
 
     /**
@@ -148,9 +150,9 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -178,9 +180,9 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setInputType($value)
+    public function setInputType($value = null)
     {
-        return $this->input_type = $value;
+        $this->input_type = $value;
     }
 
     /**
@@ -208,9 +210,9 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setOutputType($value)
+    public function setOutputType($value = null)
     {
-        return $this->output_type = $value;
+        $this->output_type = $value;
     }
 
     /**
@@ -238,9 +240,9 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\MethodOptions $value
      */
-    public function setOptions(\google\protobuf\MethodOptions $value)
+    public function setOptions(\google\protobuf\MethodOptions $value = null)
     {
-        return $this->options = $value;
+        $this->options = $value;
     }
 
     /**
@@ -268,9 +270,9 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setClientStreaming($value)
+    public function setClientStreaming($value = null)
     {
-        return $this->client_streaming = $value;
+        $this->client_streaming = $value;
     }
 
     /**
@@ -298,9 +300,9 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param bool $value
      */
-    public function setServerStreaming($value)
+    public function setServerStreaming($value = null)
     {
-        return $this->server_streaming = $value;
+        $this->server_streaming = $value;
     }
 
     /**
@@ -328,13 +330,7 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -548,6 +544,19 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->input_type = null;
+        $this->output_type = null;
+        $this->options = null;
+        $this->client_streaming = false;
+        $this->server_streaming = false;
     }
 
 

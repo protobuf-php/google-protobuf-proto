@@ -220,9 +220,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -250,9 +250,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setPackage($value)
+    public function setPackage($value = null)
     {
-        return $this->package = $value;
+        $this->package = $value;
     }
 
     /**
@@ -280,9 +280,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setDependencyList(\Protobuf\Collection $value)
+    public function setDependencyList(\Protobuf\Collection $value = null)
     {
-        return $this->dependency = $value;
+        $this->dependency = $value;
     }
 
     /**
@@ -296,7 +296,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $this->dependency = new \Protobuf\ScalarCollection();
         }
 
-        $this->dependency[] = $value;
+        $this->dependency->add($value);
     }
 
     /**
@@ -324,9 +324,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setPublicDependencyList(\Protobuf\Collection $value)
+    public function setPublicDependencyList(\Protobuf\Collection $value = null)
     {
-        return $this->public_dependency = $value;
+        $this->public_dependency = $value;
     }
 
     /**
@@ -340,7 +340,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $this->public_dependency = new \Protobuf\ScalarCollection();
         }
 
-        $this->public_dependency[] = $value;
+        $this->public_dependency->add($value);
     }
 
     /**
@@ -368,9 +368,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setWeakDependencyList(\Protobuf\Collection $value)
+    public function setWeakDependencyList(\Protobuf\Collection $value = null)
     {
-        return $this->weak_dependency = $value;
+        $this->weak_dependency = $value;
     }
 
     /**
@@ -384,7 +384,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $this->weak_dependency = new \Protobuf\ScalarCollection();
         }
 
-        $this->weak_dependency[] = $value;
+        $this->weak_dependency->add($value);
     }
 
     /**
@@ -412,9 +412,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\DescriptorProto> $value
      */
-    public function setMessageTypeList(\Protobuf\Collection $value)
+    public function setMessageTypeList(\Protobuf\Collection $value = null)
     {
-        return $this->message_type = $value;
+        $this->message_type = $value;
     }
 
     /**
@@ -428,7 +428,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $this->message_type = new \Protobuf\MessageCollection();
         }
 
-        $this->message_type[] = $value;
+        $this->message_type->add($value);
     }
 
     /**
@@ -456,9 +456,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\EnumDescriptorProto> $value
      */
-    public function setEnumTypeList(\Protobuf\Collection $value)
+    public function setEnumTypeList(\Protobuf\Collection $value = null)
     {
-        return $this->enum_type = $value;
+        $this->enum_type = $value;
     }
 
     /**
@@ -472,7 +472,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $this->enum_type = new \Protobuf\MessageCollection();
         }
 
-        $this->enum_type[] = $value;
+        $this->enum_type->add($value);
     }
 
     /**
@@ -500,9 +500,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\ServiceDescriptorProto> $value
      */
-    public function setServiceList(\Protobuf\Collection $value)
+    public function setServiceList(\Protobuf\Collection $value = null)
     {
-        return $this->service = $value;
+        $this->service = $value;
     }
 
     /**
@@ -516,7 +516,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $this->service = new \Protobuf\MessageCollection();
         }
 
-        $this->service[] = $value;
+        $this->service->add($value);
     }
 
     /**
@@ -544,9 +544,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\FieldDescriptorProto> $value
      */
-    public function setExtensionList(\Protobuf\Collection $value)
+    public function setExtensionList(\Protobuf\Collection $value = null)
     {
-        return $this->extension = $value;
+        $this->extension = $value;
     }
 
     /**
@@ -560,7 +560,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             $this->extension = new \Protobuf\MessageCollection();
         }
 
-        $this->extension[] = $value;
+        $this->extension->add($value);
     }
 
     /**
@@ -588,9 +588,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\FileOptions $value
      */
-    public function setOptions(\google\protobuf\FileOptions $value)
+    public function setOptions(\google\protobuf\FileOptions $value = null)
     {
-        return $this->options = $value;
+        $this->options = $value;
     }
 
     /**
@@ -618,9 +618,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\SourceCodeInfo $value
      */
-    public function setSourceCodeInfo(\google\protobuf\SourceCodeInfo $value)
+    public function setSourceCodeInfo(\google\protobuf\SourceCodeInfo $value = null)
     {
-        return $this->source_code_info = $value;
+        $this->source_code_info = $value;
     }
 
     /**
@@ -648,9 +648,9 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setSyntax($value)
+    public function setSyntax($value = null)
     {
-        return $this->syntax = $value;
+        $this->syntax = $value;
     }
 
     /**
@@ -678,13 +678,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -1117,6 +1111,25 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->package = null;
+        $this->dependency = null;
+        $this->public_dependency = null;
+        $this->weak_dependency = null;
+        $this->message_type = null;
+        $this->enum_type = null;
+        $this->service = null;
+        $this->extension = null;
+        $this->options = null;
+        $this->source_code_info = null;
+        $this->syntax = null;
     }
 
 

@@ -99,9 +99,9 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -129,9 +129,9 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\EnumValueDescriptorProto> $value
      */
-    public function setValueList(\Protobuf\Collection $value)
+    public function setValueList(\Protobuf\Collection $value = null)
     {
-        return $this->value = $value;
+        $this->value = $value;
     }
 
     /**
@@ -145,7 +145,7 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
             $this->value = new \Protobuf\MessageCollection();
         }
 
-        $this->value[] = $value;
+        $this->value->add($value);
     }
 
     /**
@@ -173,9 +173,9 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\EnumOptions $value
      */
-    public function setOptions(\google\protobuf\EnumOptions $value)
+    public function setOptions(\google\protobuf\EnumOptions $value = null)
     {
-        return $this->options = $value;
+        $this->options = $value;
     }
 
     /**
@@ -203,13 +203,7 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -388,6 +382,16 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->value = null;
+        $this->options = null;
     }
 
 

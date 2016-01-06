@@ -125,9 +125,9 @@ class Location extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setPathList(\Protobuf\Collection $value)
+    public function setPathList(\Protobuf\Collection $value = null)
     {
-        return $this->path = $value;
+        $this->path = $value;
     }
 
     /**
@@ -141,7 +141,7 @@ class Location extends \Protobuf\AbstractMessage
             $this->path = new \Protobuf\ScalarCollection();
         }
 
-        $this->path[] = $value;
+        $this->path->add($value);
     }
 
     /**
@@ -169,9 +169,9 @@ class Location extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setSpanList(\Protobuf\Collection $value)
+    public function setSpanList(\Protobuf\Collection $value = null)
     {
-        return $this->span = $value;
+        $this->span = $value;
     }
 
     /**
@@ -185,7 +185,7 @@ class Location extends \Protobuf\AbstractMessage
             $this->span = new \Protobuf\ScalarCollection();
         }
 
-        $this->span[] = $value;
+        $this->span->add($value);
     }
 
     /**
@@ -213,9 +213,9 @@ class Location extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setLeadingComments($value)
+    public function setLeadingComments($value = null)
     {
-        return $this->leading_comments = $value;
+        $this->leading_comments = $value;
     }
 
     /**
@@ -243,9 +243,9 @@ class Location extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setTrailingComments($value)
+    public function setTrailingComments($value = null)
     {
-        return $this->trailing_comments = $value;
+        $this->trailing_comments = $value;
     }
 
     /**
@@ -273,9 +273,9 @@ class Location extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setLeadingDetachedCommentsList(\Protobuf\Collection $value)
+    public function setLeadingDetachedCommentsList(\Protobuf\Collection $value = null)
     {
-        return $this->leading_detached_comments = $value;
+        $this->leading_detached_comments = $value;
     }
 
     /**
@@ -289,7 +289,7 @@ class Location extends \Protobuf\AbstractMessage
             $this->leading_detached_comments = new \Protobuf\ScalarCollection();
         }
 
-        $this->leading_detached_comments[] = $value;
+        $this->leading_detached_comments->add($value);
     }
 
     /**
@@ -317,13 +317,7 @@ class Location extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -566,6 +560,18 @@ class Location extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->path = null;
+        $this->span = null;
+        $this->leading_comments = null;
+        $this->trailing_comments = null;
+        $this->leading_detached_comments = null;
     }
 
 

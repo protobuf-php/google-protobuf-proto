@@ -71,9 +71,9 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -101,13 +101,7 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -220,6 +214,14 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
     }
 
 

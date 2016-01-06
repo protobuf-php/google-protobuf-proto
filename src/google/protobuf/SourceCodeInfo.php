@@ -72,9 +72,9 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\SourceCodeInfo\Location> $value
      */
-    public function setLocationList(\Protobuf\Collection $value)
+    public function setLocationList(\Protobuf\Collection $value = null)
     {
-        return $this->location = $value;
+        $this->location = $value;
     }
 
     /**
@@ -88,7 +88,7 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
             $this->location = new \Protobuf\MessageCollection();
         }
 
-        $this->location[] = $value;
+        $this->location->add($value);
     }
 
     /**
@@ -116,13 +116,7 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -254,6 +248,14 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->location = null;
     }
 
 

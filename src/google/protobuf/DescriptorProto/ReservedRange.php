@@ -84,9 +84,9 @@ class ReservedRange extends \Protobuf\AbstractMessage
      *
      * @param int $value
      */
-    public function setStart($value)
+    public function setStart($value = null)
     {
-        return $this->start = $value;
+        $this->start = $value;
     }
 
     /**
@@ -114,9 +114,9 @@ class ReservedRange extends \Protobuf\AbstractMessage
      *
      * @param int $value
      */
-    public function setEnd($value)
+    public function setEnd($value = null)
     {
-        return $this->end = $value;
+        $this->end = $value;
     }
 
     /**
@@ -144,13 +144,7 @@ class ReservedRange extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -281,6 +275,15 @@ class ReservedRange extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->start = null;
+        $this->end = null;
     }
 
 

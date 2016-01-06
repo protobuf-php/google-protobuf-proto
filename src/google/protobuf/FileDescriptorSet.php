@@ -72,9 +72,9 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\FileDescriptorProto> $value
      */
-    public function setFileList(\Protobuf\Collection $value)
+    public function setFileList(\Protobuf\Collection $value = null)
     {
-        return $this->file = $value;
+        $this->file = $value;
     }
 
     /**
@@ -88,7 +88,7 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
             $this->file = new \Protobuf\MessageCollection();
         }
 
-        $this->file[] = $value;
+        $this->file->add($value);
     }
 
     /**
@@ -116,13 +116,7 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -254,6 +248,14 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->file = null;
     }
 
 

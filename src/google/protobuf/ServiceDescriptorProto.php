@@ -99,9 +99,9 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -129,9 +129,9 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\MethodDescriptorProto> $value
      */
-    public function setMethodList(\Protobuf\Collection $value)
+    public function setMethodList(\Protobuf\Collection $value = null)
     {
-        return $this->method = $value;
+        $this->method = $value;
     }
 
     /**
@@ -145,7 +145,7 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
             $this->method = new \Protobuf\MessageCollection();
         }
 
-        $this->method[] = $value;
+        $this->method->add($value);
     }
 
     /**
@@ -173,9 +173,9 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\ServiceOptions $value
      */
-    public function setOptions(\google\protobuf\ServiceOptions $value)
+    public function setOptions(\google\protobuf\ServiceOptions $value = null)
     {
-        return $this->options = $value;
+        $this->options = $value;
     }
 
     /**
@@ -203,13 +203,7 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -388,6 +382,16 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->method = null;
+        $this->options = null;
     }
 
 

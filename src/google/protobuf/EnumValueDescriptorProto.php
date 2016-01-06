@@ -98,9 +98,9 @@ class EnumValueDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -128,9 +128,9 @@ class EnumValueDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param int $value
      */
-    public function setNumber($value)
+    public function setNumber($value = null)
     {
-        return $this->number = $value;
+        $this->number = $value;
     }
 
     /**
@@ -158,9 +158,9 @@ class EnumValueDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\EnumValueOptions $value
      */
-    public function setOptions(\google\protobuf\EnumValueOptions $value)
+    public function setOptions(\google\protobuf\EnumValueOptions $value = null)
     {
-        return $this->options = $value;
+        $this->options = $value;
     }
 
     /**
@@ -188,13 +188,7 @@ class EnumValueDescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -354,6 +348,16 @@ class EnumValueDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->number = null;
+        $this->options = null;
     }
 
 

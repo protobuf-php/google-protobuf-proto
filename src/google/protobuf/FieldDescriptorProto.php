@@ -191,9 +191,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -221,9 +221,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param int $value
      */
-    public function setNumber($value)
+    public function setNumber($value = null)
     {
-        return $this->number = $value;
+        $this->number = $value;
     }
 
     /**
@@ -251,9 +251,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\FieldDescriptorProto\Label $value
      */
-    public function setLabel(\google\protobuf\FieldDescriptorProto\Label $value)
+    public function setLabel(\google\protobuf\FieldDescriptorProto\Label $value = null)
     {
-        return $this->label = $value;
+        $this->label = $value;
     }
 
     /**
@@ -281,9 +281,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\FieldDescriptorProto\Type $value
      */
-    public function setType(\google\protobuf\FieldDescriptorProto\Type $value)
+    public function setType(\google\protobuf\FieldDescriptorProto\Type $value = null)
     {
-        return $this->type = $value;
+        $this->type = $value;
     }
 
     /**
@@ -311,9 +311,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setTypeName($value)
+    public function setTypeName($value = null)
     {
-        return $this->type_name = $value;
+        $this->type_name = $value;
     }
 
     /**
@@ -341,9 +341,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setExtendee($value)
+    public function setExtendee($value = null)
     {
-        return $this->extendee = $value;
+        $this->extendee = $value;
     }
 
     /**
@@ -371,9 +371,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setDefaultValue($value)
+    public function setDefaultValue($value = null)
     {
-        return $this->default_value = $value;
+        $this->default_value = $value;
     }
 
     /**
@@ -401,9 +401,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param int $value
      */
-    public function setOneofIndex($value)
+    public function setOneofIndex($value = null)
     {
-        return $this->oneof_index = $value;
+        $this->oneof_index = $value;
     }
 
     /**
@@ -431,9 +431,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setJsonName($value)
+    public function setJsonName($value = null)
     {
-        return $this->json_name = $value;
+        $this->json_name = $value;
     }
 
     /**
@@ -461,9 +461,9 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\FieldOptions $value
      */
-    public function setOptions(\google\protobuf\FieldOptions $value)
+    public function setOptions(\google\protobuf\FieldOptions $value = null)
     {
-        return $this->options = $value;
+        $this->options = $value;
     }
 
     /**
@@ -491,13 +491,7 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -783,6 +777,23 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->number = null;
+        $this->label = null;
+        $this->type = null;
+        $this->type_name = null;
+        $this->extendee = null;
+        $this->default_value = null;
+        $this->oneof_index = null;
+        $this->json_name = null;
+        $this->options = null;
     }
 
 

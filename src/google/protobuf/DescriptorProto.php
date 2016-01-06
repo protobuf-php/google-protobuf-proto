@@ -196,9 +196,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param string $value
      */
-    public function setName($value)
+    public function setName($value = null)
     {
-        return $this->name = $value;
+        $this->name = $value;
     }
 
     /**
@@ -226,9 +226,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\FieldDescriptorProto> $value
      */
-    public function setFieldList(\Protobuf\Collection $value)
+    public function setFieldList(\Protobuf\Collection $value = null)
     {
-        return $this->field = $value;
+        $this->field = $value;
     }
 
     /**
@@ -242,7 +242,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->field = new \Protobuf\MessageCollection();
         }
 
-        $this->field[] = $value;
+        $this->field->add($value);
     }
 
     /**
@@ -270,9 +270,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\FieldDescriptorProto> $value
      */
-    public function setExtensionList(\Protobuf\Collection $value)
+    public function setExtensionList(\Protobuf\Collection $value = null)
     {
-        return $this->extension = $value;
+        $this->extension = $value;
     }
 
     /**
@@ -286,7 +286,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->extension = new \Protobuf\MessageCollection();
         }
 
-        $this->extension[] = $value;
+        $this->extension->add($value);
     }
 
     /**
@@ -314,9 +314,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\DescriptorProto> $value
      */
-    public function setNestedTypeList(\Protobuf\Collection $value)
+    public function setNestedTypeList(\Protobuf\Collection $value = null)
     {
-        return $this->nested_type = $value;
+        $this->nested_type = $value;
     }
 
     /**
@@ -330,7 +330,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->nested_type = new \Protobuf\MessageCollection();
         }
 
-        $this->nested_type[] = $value;
+        $this->nested_type->add($value);
     }
 
     /**
@@ -358,9 +358,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\EnumDescriptorProto> $value
      */
-    public function setEnumTypeList(\Protobuf\Collection $value)
+    public function setEnumTypeList(\Protobuf\Collection $value = null)
     {
-        return $this->enum_type = $value;
+        $this->enum_type = $value;
     }
 
     /**
@@ -374,7 +374,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->enum_type = new \Protobuf\MessageCollection();
         }
 
-        $this->enum_type[] = $value;
+        $this->enum_type->add($value);
     }
 
     /**
@@ -402,9 +402,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\DescriptorProto\ExtensionRange> $value
      */
-    public function setExtensionRangeList(\Protobuf\Collection $value)
+    public function setExtensionRangeList(\Protobuf\Collection $value = null)
     {
-        return $this->extension_range = $value;
+        $this->extension_range = $value;
     }
 
     /**
@@ -418,7 +418,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->extension_range = new \Protobuf\MessageCollection();
         }
 
-        $this->extension_range[] = $value;
+        $this->extension_range->add($value);
     }
 
     /**
@@ -446,9 +446,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\OneofDescriptorProto> $value
      */
-    public function setOneofDeclList(\Protobuf\Collection $value)
+    public function setOneofDeclList(\Protobuf\Collection $value = null)
     {
-        return $this->oneof_decl = $value;
+        $this->oneof_decl = $value;
     }
 
     /**
@@ -462,7 +462,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->oneof_decl = new \Protobuf\MessageCollection();
         }
 
-        $this->oneof_decl[] = $value;
+        $this->oneof_decl->add($value);
     }
 
     /**
@@ -490,9 +490,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \google\protobuf\MessageOptions $value
      */
-    public function setOptions(\google\protobuf\MessageOptions $value)
+    public function setOptions(\google\protobuf\MessageOptions $value = null)
     {
-        return $this->options = $value;
+        $this->options = $value;
     }
 
     /**
@@ -520,9 +520,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection<\google\protobuf\DescriptorProto\ReservedRange> $value
      */
-    public function setReservedRangeList(\Protobuf\Collection $value)
+    public function setReservedRangeList(\Protobuf\Collection $value = null)
     {
-        return $this->reserved_range = $value;
+        $this->reserved_range = $value;
     }
 
     /**
@@ -536,7 +536,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->reserved_range = new \Protobuf\MessageCollection();
         }
 
-        $this->reserved_range[] = $value;
+        $this->reserved_range->add($value);
     }
 
     /**
@@ -564,9 +564,9 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      *
      * @param \Protobuf\Collection $value
      */
-    public function setReservedNameList(\Protobuf\Collection $value)
+    public function setReservedNameList(\Protobuf\Collection $value = null)
     {
-        return $this->reserved_name = $value;
+        $this->reserved_name = $value;
     }
 
     /**
@@ -580,7 +580,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             $this->reserved_name = new \Protobuf\ScalarCollection();
         }
 
-        $this->reserved_name[] = $value;
+        $this->reserved_name->add($value);
     }
 
     /**
@@ -608,13 +608,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public static function fromStream($stream, \Protobuf\Configuration $configuration = null)
     {
-        $config  = $configuration ?: \Protobuf\Configuration::getInstance();
-        $context = $config->createReadContext($stream);
-        $message = new self();
-
-        $message->readFrom($context);
-
-        return $message;
+        return new self($stream, $configuration);
     }
 
     /**
@@ -1041,6 +1035,23 @@ class DescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $size;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->name = null;
+        $this->field = null;
+        $this->extension = null;
+        $this->nested_type = null;
+        $this->enum_type = null;
+        $this->extension_range = null;
+        $this->oneof_decl = null;
+        $this->options = null;
+        $this->reserved_range = null;
+        $this->reserved_name = null;
     }
 
 

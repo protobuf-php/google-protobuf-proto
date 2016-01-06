@@ -29,7 +29,7 @@ else
 endif
 
 proto-generate:
-	php $(BASEDIR)/vendor/bin/protobuf -o $(BASEDIR)/src $(BASEDIR)/src/*.proto
+	php $(BASEDIR)/vendor/bin/protobuf -o $(BASEDIR)/src $(BASEDIR)/src/*.proto -i $(BASEDIR)/src
 
 proto-remove:
 	find $(BASEDIR)/src -type f -name "*.php" -exec rm {} \;
