@@ -238,7 +238,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addField(\google\protobuf\FieldDescriptorProto $value)
     {
-        if ( $this->field === null) {
+        if ($this->field === null) {
             $this->field = new \Protobuf\MessageCollection();
         }
 
@@ -282,7 +282,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addExtension(\google\protobuf\FieldDescriptorProto $value)
     {
-        if ( $this->extension === null) {
+        if ($this->extension === null) {
             $this->extension = new \Protobuf\MessageCollection();
         }
 
@@ -326,7 +326,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addNestedType(\google\protobuf\DescriptorProto $value)
     {
-        if ( $this->nested_type === null) {
+        if ($this->nested_type === null) {
             $this->nested_type = new \Protobuf\MessageCollection();
         }
 
@@ -370,7 +370,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addEnumType(\google\protobuf\EnumDescriptorProto $value)
     {
-        if ( $this->enum_type === null) {
+        if ($this->enum_type === null) {
             $this->enum_type = new \Protobuf\MessageCollection();
         }
 
@@ -414,7 +414,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addExtensionRange(\google\protobuf\DescriptorProto\ExtensionRange $value)
     {
-        if ( $this->extension_range === null) {
+        if ($this->extension_range === null) {
             $this->extension_range = new \Protobuf\MessageCollection();
         }
 
@@ -458,7 +458,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addOneofDecl(\google\protobuf\OneofDescriptorProto $value)
     {
-        if ( $this->oneof_decl === null) {
+        if ($this->oneof_decl === null) {
             $this->oneof_decl = new \Protobuf\MessageCollection();
         }
 
@@ -532,7 +532,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addReservedRange(\google\protobuf\DescriptorProto\ReservedRange $value)
     {
-        if ( $this->reserved_range === null) {
+        if ($this->reserved_range === null) {
             $this->reserved_range = new \Protobuf\MessageCollection();
         }
 
@@ -576,7 +576,7 @@ class DescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addReservedName($value)
     {
-        if ( $this->reserved_name === null) {
+        if ($this->reserved_name === null) {
             $this->reserved_name = new \Protobuf\ScalarCollection();
         }
 

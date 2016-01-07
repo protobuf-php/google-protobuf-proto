@@ -363,7 +363,7 @@ class FieldOptions extends \Protobuf\AbstractMessage
      */
     public function addUninterpretedOption(\google\protobuf\UninterpretedOption $value)
     {
-        if ( $this->uninterpreted_option === null) {
+        if ($this->uninterpreted_option === null) {
             $this->uninterpreted_option = new \Protobuf\MessageCollection();
         }
 

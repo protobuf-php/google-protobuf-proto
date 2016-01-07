@@ -110,7 +110,7 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
      */
     public function addFileToGenerate($value)
     {
-        if ( $this->file_to_generate === null) {
+        if ($this->file_to_generate === null) {
             $this->file_to_generate = new \Protobuf\ScalarCollection();
         }
 
@@ -184,7 +184,7 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
      */
     public function addProtoFile(\google\protobuf\FileDescriptorProto $value)
     {
-        if ( $this->proto_file === null) {
+        if ($this->proto_file === null) {
             $this->proto_file = new \Protobuf\MessageCollection();
         }
 

@@ -127,7 +127,7 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
      */
     public function addFile(\google\protobuf\compiler\CodeGeneratorResponse\File $value)
     {
-        if ( $this->file === null) {
+        if ($this->file === null) {
             $this->file = new \Protobuf\MessageCollection();
         }
 

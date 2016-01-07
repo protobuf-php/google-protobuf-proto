@@ -137,7 +137,7 @@ class Location extends \Protobuf\AbstractMessage
      */
     public function addPath($value)
     {
-        if ( $this->path === null) {
+        if ($this->path === null) {
             $this->path = new \Protobuf\ScalarCollection();
         }
 
@@ -181,7 +181,7 @@ class Location extends \Protobuf\AbstractMessage
      */
     public function addSpan($value)
     {
-        if ( $this->span === null) {
+        if ($this->span === null) {
             $this->span = new \Protobuf\ScalarCollection();
         }
 
@@ -285,7 +285,7 @@ class Location extends \Protobuf\AbstractMessage
      */
     public function addLeadingDetachedComments($value)
     {
-        if ( $this->leading_detached_comments === null) {
+        if ($this->leading_detached_comments === null) {
             $this->leading_detached_comments = new \Protobuf\ScalarCollection();
         }
 

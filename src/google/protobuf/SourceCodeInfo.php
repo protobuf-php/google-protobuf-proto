@@ -84,7 +84,7 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
      */
     public function addLocation(\google\protobuf\SourceCodeInfo\Location $value)
     {
-        if ( $this->location === null) {
+        if ($this->location === null) {
             $this->location = new \Protobuf\MessageCollection();
         }
 

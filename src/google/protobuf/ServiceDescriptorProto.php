@@ -141,7 +141,7 @@ class ServiceDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addMethod(\google\protobuf\MethodDescriptorProto $value)
     {
-        if ( $this->method === null) {
+        if ($this->method === null) {
             $this->method = new \Protobuf\MessageCollection();
         }
 

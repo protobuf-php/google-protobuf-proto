@@ -84,7 +84,7 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
      */
     public function addFile(\google\protobuf\FileDescriptorProto $value)
     {
-        if ( $this->file === null) {
+        if ($this->file === null) {
             $this->file = new \Protobuf\MessageCollection();
         }
 

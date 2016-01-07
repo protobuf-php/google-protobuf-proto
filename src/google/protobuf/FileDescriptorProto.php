@@ -292,7 +292,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addDependency($value)
     {
-        if ( $this->dependency === null) {
+        if ($this->dependency === null) {
             $this->dependency = new \Protobuf\ScalarCollection();
         }
 
@@ -336,7 +336,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addPublicDependency($value)
     {
-        if ( $this->public_dependency === null) {
+        if ($this->public_dependency === null) {
             $this->public_dependency = new \Protobuf\ScalarCollection();
         }
 
@@ -380,7 +380,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addWeakDependency($value)
     {
-        if ( $this->weak_dependency === null) {
+        if ($this->weak_dependency === null) {
             $this->weak_dependency = new \Protobuf\ScalarCollection();
         }
 
@@ -424,7 +424,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addMessageType(\google\protobuf\DescriptorProto $value)
     {
-        if ( $this->message_type === null) {
+        if ($this->message_type === null) {
             $this->message_type = new \Protobuf\MessageCollection();
         }
 
@@ -468,7 +468,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addEnumType(\google\protobuf\EnumDescriptorProto $value)
     {
-        if ( $this->enum_type === null) {
+        if ($this->enum_type === null) {
             $this->enum_type = new \Protobuf\MessageCollection();
         }
 
@@ -512,7 +512,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addService(\google\protobuf\ServiceDescriptorProto $value)
     {
-        if ( $this->service === null) {
+        if ($this->service === null) {
             $this->service = new \Protobuf\MessageCollection();
         }
 
@@ -556,7 +556,7 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addExtension(\google\protobuf\FieldDescriptorProto $value)
     {
-        if ( $this->extension === null) {
+        if ($this->extension === null) {
             $this->extension = new \Protobuf\MessageCollection();
         }
 

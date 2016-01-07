@@ -141,7 +141,7 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
      */
     public function addValue(\google\protobuf\EnumValueDescriptorProto $value)
     {
-        if ( $this->value === null) {
+        if ($this->value === null) {
             $this->value = new \Protobuf\MessageCollection();
         }
 

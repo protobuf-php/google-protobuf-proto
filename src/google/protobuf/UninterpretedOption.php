@@ -162,7 +162,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      */
     public function addName(\google\protobuf\UninterpretedOption\NamePart $value)
     {
-        if ( $this->name === null) {
+        if ($this->name === null) {
             $this->name = new \Protobuf\MessageCollection();
         }
 
@@ -316,7 +316,11 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
      */
     public function setStringValue($value = null)
     {
-        $this->string_value = \Protobuf\Stream::wrap($value);
+        if ($value !== null && ! $value instanceof \Protobuf\Stream) {
+            $value = \Protobuf\Stream::wrap($value);
+        }
+
+        $this->string_value = $value;
     }
 
     /**
