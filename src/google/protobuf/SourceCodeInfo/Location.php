@@ -10,47 +10,6 @@ namespace google\protobuf\SourceCodeInfo;
 
 /**
  * Protobuf message : google.protobuf.SourceCodeInfo.Location
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="Location",
- *   package="google.protobuf.SourceCodeInfo",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="path",
- *       tag=1,
- *       type=5,
- *       label=3,
- *       pack=true
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="span",
- *       tag=2,
- *       type=5,
- *       label=3,
- *       pack=true
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="leading_comments",
- *       tag=3,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="trailing_comments",
- *       tag=4,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="leading_detached_comments",
- *       tag=6,
- *       type=9,
- *       label=3
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class Location extends \Protobuf\AbstractMessage
 {
@@ -350,6 +309,48 @@ class Location extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'Location',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'path',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_INT32(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'span',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_INT32(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 3,
+                    'name' => 'leading_comments',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 4,
+                    'name' => 'trailing_comments',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 6,
+                    'name' => 'leading_detached_comments',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+            ],
+        ]);
     }
 
     /**

@@ -10,21 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.OneofDescriptorProto
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="OneofDescriptorProto",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="name",
- *       tag=1,
- *       type=9,
- *       label=1
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class OneofDescriptorProto extends \Protobuf\AbstractMessage
 {
@@ -117,6 +102,24 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
         $message->setName($values['name']);
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'OneofDescriptorProto',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'name',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+            ],
+        ]);
     }
 
     /**

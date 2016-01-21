@@ -10,33 +10,6 @@ namespace google\protobuf\compiler\CodeGeneratorResponse;
 
 /**
  * Protobuf message : google.protobuf.compiler.CodeGeneratorResponse.File
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="File",
- *   package="google.protobuf.compiler.CodeGeneratorResponse",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="name",
- *       tag=1,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="insertion_point",
- *       tag=2,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="content",
- *       tag=15,
- *       type=9,
- *       label=1
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class File extends \Protobuf\AbstractMessage
 {
@@ -207,6 +180,36 @@ class File extends \Protobuf\AbstractMessage
         $message->setContent($values['content']);
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'File',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'name',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'insertion_point',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 15,
+                    'name' => 'content',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+            ],
+        ]);
     }
 
     /**

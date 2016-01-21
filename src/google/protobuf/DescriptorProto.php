@@ -10,83 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.DescriptorProto
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="DescriptorProto",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="name",
- *       tag=1,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="field",
- *       tag=2,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.FieldDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="extension",
- *       tag=6,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.FieldDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="nested_type",
- *       tag=3,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.DescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="enum_type",
- *       tag=4,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.EnumDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="extension_range",
- *       tag=5,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.DescriptorProto.ExtensionRange"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="oneof_decl",
- *       tag=8,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.OneofDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="options",
- *       tag=7,
- *       type=11,
- *       label=1,
- *       reference="google.protobuf.MessageOptions"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="reserved_range",
- *       tag=9,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.DescriptorProto.ReservedRange"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="reserved_name",
- *       tag=10,
- *       type=9,
- *       label=3
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class DescriptorProto extends \Protobuf\AbstractMessage
 {
@@ -666,6 +589,86 @@ class DescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'DescriptorProto',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'name',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'field',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.FieldDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 6,
+                    'name' => 'extension',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.FieldDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 3,
+                    'name' => 'nested_type',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.DescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 4,
+                    'name' => 'enum_type',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.EnumDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 5,
+                    'name' => 'extension_range',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.DescriptorProto.ExtensionRange'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 8,
+                    'name' => 'oneof_decl',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.OneofDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 7,
+                    'name' => 'options',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'type_name' => '.google.protobuf.MessageOptions'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 9,
+                    'name' => 'reserved_range',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.DescriptorProto.ReservedRange'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 10,
+                    'name' => 'reserved_name',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+            ],
+        ]);
     }
 
     /**

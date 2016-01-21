@@ -10,22 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.SourceCodeInfo
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="SourceCodeInfo",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="location",
- *       tag=1,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.SourceCodeInfo.Location"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class SourceCodeInfo extends \Protobuf\AbstractMessage
 {
@@ -134,6 +118,25 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'SourceCodeInfo',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'location',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.SourceCodeInfo.Location'
+                ]),
+            ],
+        ]);
     }
 
     /**

@@ -10,22 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.FileDescriptorSet
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="FileDescriptorSet",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="file",
- *       tag=1,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.FileDescriptorProto"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class FileDescriptorSet extends \Protobuf\AbstractMessage
 {
@@ -134,6 +118,25 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'FileDescriptorSet',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'file',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.FileDescriptorProto'
+                ]),
+            ],
+        ]);
     }
 
     /**

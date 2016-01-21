@@ -10,49 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.MessageOptions
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="MessageOptions",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="message_set_wire_format",
- *       tag=1,
- *       type=8,
- *       label=1,
- *       default="false"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="no_standard_descriptor_accessor",
- *       tag=2,
- *       type=8,
- *       label=1,
- *       default="false"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="deprecated",
- *       tag=3,
- *       type=8,
- *       label=1,
- *       default="false"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="map_entry",
- *       tag=7,
- *       type=8,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="uninterpreted_option",
- *       tag=999,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.UninterpretedOption"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class MessageOptions extends \Protobuf\AbstractMessage
 {
@@ -330,6 +287,52 @@ class MessageOptions extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'MessageOptions',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'message_set_wire_format',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'default_value' => false
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'no_standard_descriptor_accessor',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'default_value' => false
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 3,
+                    'name' => 'deprecated',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'default_value' => false
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 7,
+                    'name' => 'map_entry',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 999,
+                    'name' => 'uninterpreted_option',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.UninterpretedOption'
+                ]),
+            ],
+        ]);
     }
 
     /**

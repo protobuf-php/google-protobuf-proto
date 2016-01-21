@@ -10,27 +10,6 @@ namespace google\protobuf\UninterpretedOption;
 
 /**
  * Protobuf message : google.protobuf.UninterpretedOption.NamePart
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="NamePart",
- *   package="google.protobuf.UninterpretedOption",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="name_part",
- *       tag=1,
- *       type=9,
- *       label=2
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="is_extension",
- *       tag=2,
- *       type=8,
- *       label=2
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class NamePart extends \Protobuf\AbstractMessage
 {
@@ -168,6 +147,30 @@ class NamePart extends \Protobuf\AbstractMessage
         $message->setIsExtension($values['is_extension']);
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'NamePart',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'name_part',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REQUIRED()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'is_extension',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REQUIRED()
+                ]),
+            ],
+        ]);
     }
 
     /**

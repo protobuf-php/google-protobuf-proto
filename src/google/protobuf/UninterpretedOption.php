@@ -10,58 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.UninterpretedOption
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="UninterpretedOption",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="name",
- *       tag=2,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.UninterpretedOption.NamePart"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="identifier_value",
- *       tag=3,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="positive_int_value",
- *       tag=4,
- *       type=4,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="negative_int_value",
- *       tag=5,
- *       type=3,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="double_value",
- *       tag=6,
- *       type=1,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="string_value",
- *       tag=7,
- *       type=12,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="aggregate_value",
- *       tag=8,
- *       type=9,
- *       label=1
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class UninterpretedOption extends \Protobuf\AbstractMessage
 {
@@ -409,6 +357,61 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'UninterpretedOption',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'name',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.UninterpretedOption.NamePart'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 3,
+                    'name' => 'identifier_value',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 4,
+                    'name' => 'positive_int_value',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_UINT64(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 5,
+                    'name' => 'negative_int_value',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_INT64(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 6,
+                    'name' => 'double_value',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_DOUBLE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 7,
+                    'name' => 'string_value',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BYTES(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 8,
+                    'name' => 'aggregate_value',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+            ],
+        ]);
     }
 
     /**

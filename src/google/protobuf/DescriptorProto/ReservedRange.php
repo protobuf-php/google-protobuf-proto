@@ -10,27 +10,6 @@ namespace google\protobuf\DescriptorProto;
 
 /**
  * Protobuf message : google.protobuf.DescriptorProto.ReservedRange
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="ReservedRange",
- *   package="google.protobuf.DescriptorProto",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="start",
- *       tag=1,
- *       type=5,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="end",
- *       tag=2,
- *       type=5,
- *       label=1
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class ReservedRange extends \Protobuf\AbstractMessage
 {
@@ -162,6 +141,30 @@ class ReservedRange extends \Protobuf\AbstractMessage
         $message->setEnd($values['end']);
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'ReservedRange',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'start',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_INT32(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'end',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_INT32(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+            ],
+        ]);
     }
 
     /**

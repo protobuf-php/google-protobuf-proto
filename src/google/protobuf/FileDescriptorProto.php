@@ -10,93 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.FileDescriptorProto
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="FileDescriptorProto",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="name",
- *       tag=1,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="package",
- *       tag=2,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="dependency",
- *       tag=3,
- *       type=9,
- *       label=3
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="public_dependency",
- *       tag=10,
- *       type=5,
- *       label=3
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="weak_dependency",
- *       tag=11,
- *       type=5,
- *       label=3
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="message_type",
- *       tag=4,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.DescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="enum_type",
- *       tag=5,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.EnumDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="service",
- *       tag=6,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.ServiceDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="extension",
- *       tag=7,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.FieldDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="options",
- *       tag=8,
- *       type=11,
- *       label=1,
- *       reference="google.protobuf.FileOptions"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="source_code_info",
- *       tag=9,
- *       type=11,
- *       label=1,
- *       reference="google.protobuf.SourceCodeInfo"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="syntax",
- *       tag=12,
- *       type=9,
- *       label=1
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class FileDescriptorProto extends \Protobuf\AbstractMessage
 {
@@ -737,6 +650,96 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'FileDescriptorProto',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'name',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'package',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 3,
+                    'name' => 'dependency',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 10,
+                    'name' => 'public_dependency',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_INT32(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 11,
+                    'name' => 'weak_dependency',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_INT32(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 4,
+                    'name' => 'message_type',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.DescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 5,
+                    'name' => 'enum_type',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.EnumDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 6,
+                    'name' => 'service',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.ServiceDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 7,
+                    'name' => 'extension',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.FieldDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 8,
+                    'name' => 'options',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'type_name' => '.google.protobuf.FileOptions'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 9,
+                    'name' => 'source_code_info',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'type_name' => '.google.protobuf.SourceCodeInfo'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 12,
+                    'name' => 'syntax',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+            ],
+        ]);
     }
 
     /**

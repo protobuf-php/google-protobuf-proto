@@ -10,28 +10,6 @@ namespace google\protobuf\compiler;
 
 /**
  * Protobuf message : google.protobuf.compiler.CodeGeneratorResponse
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="CodeGeneratorResponse",
- *   package="google.protobuf.compiler",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="error",
- *       tag=1,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="file",
- *       tag=15,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.compiler.CodeGeneratorResponse.File"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class CodeGeneratorResponse extends \Protobuf\AbstractMessage
 {
@@ -180,6 +158,31 @@ class CodeGeneratorResponse extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'CodeGeneratorResponse',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'error',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 15,
+                    'name' => 'file',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.compiler.CodeGeneratorResponse.File'
+                ]),
+            ],
+        ]);
     }
 
     /**

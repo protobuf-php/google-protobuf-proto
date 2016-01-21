@@ -10,29 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.EnumValueOptions
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="EnumValueOptions",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="deprecated",
- *       tag=1,
- *       type=8,
- *       label=1,
- *       default="false"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="uninterpreted_option",
- *       tag=999,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.UninterpretedOption"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class EnumValueOptions extends \Protobuf\AbstractMessage
 {
@@ -191,6 +168,32 @@ class EnumValueOptions extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'EnumValueOptions',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'deprecated',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'default_value' => false
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 999,
+                    'name' => 'uninterpreted_option',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.UninterpretedOption'
+                ]),
+            ],
+        ]);
     }
 
     /**

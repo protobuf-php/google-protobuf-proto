@@ -10,35 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.EnumDescriptorProto
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="EnumDescriptorProto",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="name",
- *       tag=1,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="value",
- *       tag=2,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.EnumValueDescriptorProto"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="options",
- *       tag=3,
- *       type=11,
- *       label=1,
- *       reference="google.protobuf.EnumOptions"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class EnumDescriptorProto extends \Protobuf\AbstractMessage
 {
@@ -226,6 +197,38 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'EnumDescriptorProto',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'name',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'value',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.EnumValueDescriptorProto'
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 3,
+                    'name' => 'options',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'type_name' => '.google.protobuf.EnumOptions'
+                ]),
+            ],
+        ]);
     }
 
     /**

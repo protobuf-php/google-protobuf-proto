@@ -10,65 +10,6 @@ namespace google\protobuf;
 
 /**
  * Protobuf message : google.protobuf.FieldOptions
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="FieldOptions",
- *   package="google.protobuf",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="ctype",
- *       tag=1,
- *       type=14,
- *       label=1,
- *       default="STRING",
- *       reference="google.protobuf.FieldOptions.CType"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="packed",
- *       tag=2,
- *       type=8,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="jstype",
- *       tag=6,
- *       type=14,
- *       label=1,
- *       default="JS_NORMAL",
- *       reference="google.protobuf.FieldOptions.JSType"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="lazy",
- *       tag=5,
- *       type=8,
- *       label=1,
- *       default="false"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="deprecated",
- *       tag=3,
- *       type=8,
- *       label=1,
- *       default="false"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="weak",
- *       tag=10,
- *       type=8,
- *       label=1,
- *       default="false"
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="uninterpreted_option",
- *       tag=999,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.UninterpretedOption"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class FieldOptions extends \Protobuf\AbstractMessage
 {
@@ -426,6 +367,68 @@ class FieldOptions extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'FieldOptions',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'ctype',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_ENUM(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'type_name' => '.google.protobuf.FieldOptions.CType',
+                    'default_value' => \google\protobuf\FieldOptions\CType::STRING()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'packed',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 6,
+                    'name' => 'jstype',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_ENUM(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'type_name' => '.google.protobuf.FieldOptions.JSType',
+                    'default_value' => \google\protobuf\FieldOptions\JSType::JS_NORMAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 5,
+                    'name' => 'lazy',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'default_value' => false
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 3,
+                    'name' => 'deprecated',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'default_value' => false
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 10,
+                    'name' => 'weak',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_BOOL(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL(),
+                    'default_value' => false
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 999,
+                    'name' => 'uninterpreted_option',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.UninterpretedOption'
+                ]),
+            ],
+        ]);
     }
 
     /**

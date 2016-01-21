@@ -10,34 +10,6 @@ namespace google\protobuf\compiler;
 
 /**
  * Protobuf message : google.protobuf.compiler.CodeGeneratorRequest
- *
- * @\Protobuf\Annotation\Descriptor(
- *   name="CodeGeneratorRequest",
- *   package="google.protobuf.compiler",
- *   fields={
- *     @\Protobuf\Annotation\Field(
- *       name="file_to_generate",
- *       tag=1,
- *       type=9,
- *       label=3
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="parameter",
- *       tag=2,
- *       type=9,
- *       label=1
- *     ),
- *     @\Protobuf\Annotation\Field(
- *       name="proto_file",
- *       tag=15,
- *       type=11,
- *       label=3,
- *       reference="google.protobuf.FileDescriptorProto"
- *     )
- *   },
- *   extensions={
- *   }
- * )
  */
 class CodeGeneratorRequest extends \Protobuf\AbstractMessage
 {
@@ -242,6 +214,37 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
         }
 
         return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function descriptor()
+    {
+        return \google\protobuf\DescriptorProto::fromArray([
+            'name'      => 'CodeGeneratorRequest',
+            'field'     => [
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 1,
+                    'name' => 'file_to_generate',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 2,
+                    'name' => 'parameter',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_STRING(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_OPTIONAL()
+                ]),
+                \google\protobuf\FieldDescriptorProto::fromArray([
+                    'number' => 15,
+                    'name' => 'proto_file',
+                    'type' => \google\protobuf\FieldDescriptorProto\Type::TYPE_MESSAGE(),
+                    'label' => \google\protobuf\FieldDescriptorProto\Label::LABEL_REPEATED(),
+                    'type_name' => '.google.protobuf.FileDescriptorProto'
+                ]),
+            ],
+        ]);
     }
 
     /**
