@@ -122,6 +122,23 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'file' => []
+        ], $values);
+
+        foreach ($values['file'] as $item) {
+            $message->addFile($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

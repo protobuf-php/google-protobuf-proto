@@ -497,6 +497,39 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'name' => null,
+            'number' => null,
+            'label' => null,
+            'type' => null,
+            'type_name' => null,
+            'extendee' => null,
+            'default_value' => null,
+            'oneof_index' => null,
+            'json_name' => null,
+            'options' => null
+        ], $values);
+
+        $message->setName($values['name']);
+        $message->setNumber($values['number']);
+        $message->setLabel($values['label']);
+        $message->setType($values['type']);
+        $message->setTypeName($values['type_name']);
+        $message->setExtendee($values['extendee']);
+        $message->setDefaultValue($values['default_value']);
+        $message->setOneofIndex($values['oneof_index']);
+        $message->setJsonName($values['json_name']);
+        $message->setOptions($values['options']);
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

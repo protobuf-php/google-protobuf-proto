@@ -193,6 +193,25 @@ class File extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'name' => null,
+            'insertion_point' => null,
+            'content' => null
+        ], $values);
+
+        $message->setName($values['name']);
+        $message->setInsertionPoint($values['insertion_point']);
+        $message->setContent($values['content']);
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

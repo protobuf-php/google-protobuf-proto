@@ -176,6 +176,26 @@ class EnumValueOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'deprecated' => false,
+            'uninterpreted_option' => []
+        ], $values);
+
+        $message->setDeprecated($values['deprecated']);
+
+        foreach ($values['uninterpreted_option'] as $item) {
+            $message->addUninterpretedOption($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

@@ -795,6 +795,54 @@ class FileOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'java_package' => null,
+            'java_outer_classname' => null,
+            'java_multiple_files' => false,
+            'java_generate_equals_and_hash' => false,
+            'java_string_check_utf8' => false,
+            'optimize_for' => \google\protobuf\FileOptions\OptimizeMode::SPEED(),
+            'go_package' => null,
+            'cc_generic_services' => false,
+            'java_generic_services' => false,
+            'py_generic_services' => false,
+            'deprecated' => false,
+            'cc_enable_arenas' => false,
+            'objc_class_prefix' => null,
+            'csharp_namespace' => null,
+            'javanano_use_deprecated_package' => null,
+            'uninterpreted_option' => []
+        ], $values);
+
+        $message->setJavaPackage($values['java_package']);
+        $message->setJavaOuterClassname($values['java_outer_classname']);
+        $message->setJavaMultipleFiles($values['java_multiple_files']);
+        $message->setJavaGenerateEqualsAndHash($values['java_generate_equals_and_hash']);
+        $message->setJavaStringCheckUtf8($values['java_string_check_utf8']);
+        $message->setOptimizeFor($values['optimize_for']);
+        $message->setGoPackage($values['go_package']);
+        $message->setCcGenericServices($values['cc_generic_services']);
+        $message->setJavaGenericServices($values['java_generic_services']);
+        $message->setPyGenericServices($values['py_generic_services']);
+        $message->setDeprecated($values['deprecated']);
+        $message->setCcEnableArenas($values['cc_enable_arenas']);
+        $message->setObjcClassPrefix($values['objc_class_prefix']);
+        $message->setCsharpNamespace($values['csharp_namespace']);
+        $message->setJavananoUseDeprecatedPackage($values['javanano_use_deprecated_package']);
+
+        foreach ($values['uninterpreted_option'] as $item) {
+            $message->addUninterpretedOption($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

@@ -614,6 +614,63 @@ class DescriptorProto extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'name' => null,
+            'field' => [],
+            'extension' => [],
+            'nested_type' => [],
+            'enum_type' => [],
+            'extension_range' => [],
+            'oneof_decl' => [],
+            'options' => null,
+            'reserved_range' => [],
+            'reserved_name' => []
+        ], $values);
+
+        $message->setName($values['name']);
+        $message->setOptions($values['options']);
+
+        foreach ($values['field'] as $item) {
+            $message->addField($item);
+        }
+
+        foreach ($values['extension'] as $item) {
+            $message->addExtension($item);
+        }
+
+        foreach ($values['nested_type'] as $item) {
+            $message->addNestedType($item);
+        }
+
+        foreach ($values['enum_type'] as $item) {
+            $message->addEnumType($item);
+        }
+
+        foreach ($values['extension_range'] as $item) {
+            $message->addExtensionRange($item);
+        }
+
+        foreach ($values['oneof_decl'] as $item) {
+            $message->addOneofDecl($item);
+        }
+
+        foreach ($values['reserved_range'] as $item) {
+            $message->addReservedRange($item);
+        }
+
+        foreach ($values['reserved_name'] as $item) {
+            $message->addReservedName($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

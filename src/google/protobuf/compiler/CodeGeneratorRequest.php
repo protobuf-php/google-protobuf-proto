@@ -222,6 +222,31 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'file_to_generate' => [],
+            'parameter' => null,
+            'proto_file' => []
+        ], $values);
+
+        $message->setParameter($values['parameter']);
+
+        foreach ($values['file_to_generate'] as $item) {
+            $message->addFileToGenerate($item);
+        }
+
+        foreach ($values['proto_file'] as $item) {
+            $message->addProtoFile($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

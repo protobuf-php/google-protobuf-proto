@@ -150,6 +150,29 @@ class NamePart extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        if ( ! isset($values['name_part'])) {
+            throw new \InvalidArgumentException('Field "name_part" (tag 1) is required but has no value.');
+        }
+
+        if ( ! isset($values['is_extension'])) {
+            throw new \InvalidArgumentException('Field "is_extension" (tag 2) is required but has no value.');
+        }
+
+        $message = new self();
+        $values  = array_merge([
+        ], $values);
+
+        $message->setNamePart($values['name_part']);
+        $message->setIsExtension($values['is_extension']);
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

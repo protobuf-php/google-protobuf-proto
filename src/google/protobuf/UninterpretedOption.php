@@ -384,6 +384,36 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'name' => [],
+            'identifier_value' => null,
+            'positive_int_value' => null,
+            'negative_int_value' => null,
+            'double_value' => null,
+            'string_value' => null,
+            'aggregate_value' => null
+        ], $values);
+
+        $message->setIdentifierValue($values['identifier_value']);
+        $message->setPositiveIntValue($values['positive_int_value']);
+        $message->setNegativeIntValue($values['negative_int_value']);
+        $message->setDoubleValue($values['double_value']);
+        $message->setStringValue($values['string_value']);
+        $message->setAggregateValue($values['aggregate_value']);
+
+        foreach ($values['name'] as $item) {
+            $message->addName($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

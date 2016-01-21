@@ -323,6 +323,38 @@ class Location extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'path' => [],
+            'span' => [],
+            'leading_comments' => null,
+            'trailing_comments' => null,
+            'leading_detached_comments' => []
+        ], $values);
+
+        $message->setLeadingComments($values['leading_comments']);
+        $message->setTrailingComments($values['trailing_comments']);
+
+        foreach ($values['path'] as $item) {
+            $message->addPath($item);
+        }
+
+        foreach ($values['span'] as $item) {
+            $message->addSpan($item);
+        }
+
+        foreach ($values['leading_detached_comments'] as $item) {
+            $message->addLeadingDetachedComments($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

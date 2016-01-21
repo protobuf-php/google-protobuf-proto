@@ -336,6 +336,31 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'name' => null,
+            'input_type' => null,
+            'output_type' => null,
+            'options' => null,
+            'client_streaming' => false,
+            'server_streaming' => false
+        ], $values);
+
+        $message->setName($values['name']);
+        $message->setInputType($values['input_type']);
+        $message->setOutputType($values['output_type']);
+        $message->setOptions($values['options']);
+        $message->setClientStreaming($values['client_streaming']);
+        $message->setServerStreaming($values['server_streaming']);
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

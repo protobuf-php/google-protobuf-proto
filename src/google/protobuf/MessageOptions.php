@@ -309,6 +309,32 @@ class MessageOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'message_set_wire_format' => false,
+            'no_standard_descriptor_accessor' => false,
+            'deprecated' => false,
+            'map_entry' => null,
+            'uninterpreted_option' => []
+        ], $values);
+
+        $message->setMessageSetWireFormat($values['message_set_wire_format']);
+        $message->setNoStandardDescriptorAccessor($values['no_standard_descriptor_accessor']);
+        $message->setDeprecated($values['deprecated']);
+        $message->setMapEntry($values['map_entry']);
+
+        foreach ($values['uninterpreted_option'] as $item) {
+            $message->addUninterpretedOption($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();

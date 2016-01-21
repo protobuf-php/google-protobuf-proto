@@ -401,6 +401,36 @@ class FieldOptions extends \Protobuf\AbstractMessage
     /**
      * {@inheritdoc}
      */
+    public static function fromArray(array $values)
+    {
+        $message = new self();
+        $values  = array_merge([
+            'ctype' => \google\protobuf\FieldOptions\CType::STRING(),
+            'packed' => null,
+            'jstype' => \google\protobuf\FieldOptions\JSType::JS_NORMAL(),
+            'lazy' => false,
+            'deprecated' => false,
+            'weak' => false,
+            'uninterpreted_option' => []
+        ], $values);
+
+        $message->setCtype($values['ctype']);
+        $message->setPacked($values['packed']);
+        $message->setJstype($values['jstype']);
+        $message->setLazy($values['lazy']);
+        $message->setDeprecated($values['deprecated']);
+        $message->setWeak($values['weak']);
+
+        foreach ($values['uninterpreted_option'] as $item) {
+            $message->addUninterpretedOption($item);
+        }
+
+        return $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toStream(\Protobuf\Configuration $configuration = null)
     {
         $config  = $configuration ?: \Protobuf\Configuration::getInstance();
