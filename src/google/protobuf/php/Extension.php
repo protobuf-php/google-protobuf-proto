@@ -81,7 +81,7 @@ class Extension implements \Protobuf\Extension
             return $size;
         };
 
-        return self::$package = new \Protobuf\Extension\ExtensionField('\\google\\protobuf\\FileOptions', 'package', 50002, $readCallback, $writeCallback, $sizeCallback);
+        return self::$package = new \Protobuf\Extension\ExtensionField('\\google\\protobuf\\FileOptions', 'package', 50002, $readCallback, $writeCallback, $sizeCallback, __METHOD__);
     }
 
     /**
@@ -126,7 +126,7 @@ class Extension implements \Protobuf\Extension
             return $size;
         };
 
-        return self::$generic_services = new \Protobuf\Extension\ExtensionField('\\google\\protobuf\\FileOptions', 'generic_services', 50003, $readCallback, $writeCallback, $sizeCallback);
+        return self::$generic_services = new \Protobuf\Extension\ExtensionField('\\google\\protobuf\\FileOptions', 'generic_services', 50003, $readCallback, $writeCallback, $sizeCallback, __METHOD__);
     }
 
 
