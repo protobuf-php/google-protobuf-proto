@@ -228,7 +228,7 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -276,6 +276,18 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
     public function clear()
     {
         $this->location = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\SourceCodeInfo) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->location = $message->location ?: $this->location;
     }
 
 

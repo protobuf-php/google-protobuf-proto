@@ -356,7 +356,7 @@ class EnumOptions extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -416,6 +416,20 @@ class EnumOptions extends \Protobuf\AbstractMessage
         $this->allow_alias = null;
         $this->deprecated = false;
         $this->uninterpreted_option = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\EnumOptions) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->allow_alias = $message->allow_alias ?: $this->allow_alias;
+        $this->deprecated = $message->deprecated ?: $this->deprecated;
+        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
     }
 
 

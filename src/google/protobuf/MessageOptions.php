@@ -476,7 +476,7 @@ class MessageOptions extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -548,6 +548,22 @@ class MessageOptions extends \Protobuf\AbstractMessage
         $this->deprecated = false;
         $this->map_entry = null;
         $this->uninterpreted_option = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\MessageOptions) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->message_set_wire_format = $message->message_set_wire_format ?: $this->message_set_wire_format;
+        $this->no_standard_descriptor_accessor = $message->no_standard_descriptor_accessor ?: $this->no_standard_descriptor_accessor;
+        $this->deprecated = $message->deprecated ?: $this->deprecated;
+        $this->map_entry = $message->map_entry ?: $this->map_entry;
+        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
     }
 
 

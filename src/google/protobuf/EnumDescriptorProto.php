@@ -354,7 +354,7 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -417,6 +417,20 @@ class EnumDescriptorProto extends \Protobuf\AbstractMessage
         $this->name = null;
         $this->value = null;
         $this->options = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\EnumDescriptorProto) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->name = $message->name ?: $this->name;
+        $this->value = $message->value ?: $this->value;
+        $this->options = $message->options ?: $this->options;
     }
 
 

@@ -313,7 +313,7 @@ class File extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -368,6 +368,20 @@ class File extends \Protobuf\AbstractMessage
         $this->name = null;
         $this->insertion_point = null;
         $this->content = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\compiler\CodeGeneratorResponse\File) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->name = $message->name ?: $this->name;
+        $this->insertion_point = $message->insertion_point ?: $this->insertion_point;
+        $this->content = $message->content ?: $this->content;
     }
 
 

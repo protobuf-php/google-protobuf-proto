@@ -730,7 +730,7 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -830,6 +830,27 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
         $this->oneof_index = null;
         $this->json_name = null;
         $this->options = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\FieldDescriptorProto) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->name = $message->name ?: $this->name;
+        $this->number = $message->number ?: $this->number;
+        $this->label = $message->label ?: $this->label;
+        $this->type = $message->type ?: $this->type;
+        $this->type_name = $message->type_name ?: $this->type_name;
+        $this->extendee = $message->extendee ?: $this->extendee;
+        $this->default_value = $message->default_value ?: $this->default_value;
+        $this->oneof_index = $message->oneof_index ?: $this->oneof_index;
+        $this->json_name = $message->json_name ?: $this->json_name;
+        $this->options = $message->options ?: $this->options;
     }
 
 

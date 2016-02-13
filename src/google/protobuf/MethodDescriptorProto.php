@@ -509,7 +509,7 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -585,6 +585,23 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
         $this->options = null;
         $this->client_streaming = false;
         $this->server_streaming = false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\MethodDescriptorProto) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->name = $message->name ?: $this->name;
+        $this->input_type = $message->input_type ?: $this->input_type;
+        $this->output_type = $message->output_type ?: $this->output_type;
+        $this->options = $message->options ?: $this->options;
+        $this->client_streaming = $message->client_streaming ?: $this->client_streaming;
+        $this->server_streaming = $message->server_streaming ?: $this->server_streaming;
     }
 
 

@@ -598,7 +598,7 @@ class FieldOptions extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -682,6 +682,24 @@ class FieldOptions extends \Protobuf\AbstractMessage
         $this->deprecated = false;
         $this->weak = false;
         $this->uninterpreted_option = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\FieldOptions) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->ctype = $message->ctype ?: $this->ctype;
+        $this->packed = $message->packed ?: $this->packed;
+        $this->jstype = $message->jstype ?: $this->jstype;
+        $this->lazy = $message->lazy ?: $this->lazy;
+        $this->deprecated = $message->deprecated ?: $this->deprecated;
+        $this->weak = $message->weak ?: $this->weak;
+        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
     }
 
 

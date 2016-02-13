@@ -581,7 +581,7 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -665,6 +665,24 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
         $this->double_value = null;
         $this->string_value = null;
         $this->aggregate_value = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\UninterpretedOption) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->name = $message->name ?: $this->name;
+        $this->identifier_value = $message->identifier_value ?: $this->identifier_value;
+        $this->positive_int_value = $message->positive_int_value ?: $this->positive_int_value;
+        $this->negative_int_value = $message->negative_int_value ?: $this->negative_int_value;
+        $this->double_value = $message->double_value ?: $this->double_value;
+        $this->string_value = $message->string_value ?: $this->string_value;
+        $this->aggregate_value = $message->aggregate_value ?: $this->aggregate_value;
     }
 
 

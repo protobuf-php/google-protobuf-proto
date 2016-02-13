@@ -269,7 +269,7 @@ class NamePart extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -318,6 +318,19 @@ class NamePart extends \Protobuf\AbstractMessage
     {
         $this->name_part = null;
         $this->is_extension = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\UninterpretedOption\NamePart) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->name_part = $message->name_part ?: $this->name_part;
+        $this->is_extension = $message->is_extension ?: $this->is_extension;
     }
 
 

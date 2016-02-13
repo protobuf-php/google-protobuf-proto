@@ -368,7 +368,7 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -430,6 +430,20 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
         $this->file_to_generate = null;
         $this->parameter = null;
         $this->proto_file = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\compiler\CodeGeneratorRequest) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->file_to_generate = $message->file_to_generate ?: $this->file_to_generate;
+        $this->parameter = $message->parameter ?: $this->parameter;
+        $this->proto_file = $message->proto_file ?: $this->proto_file;
     }
 
 

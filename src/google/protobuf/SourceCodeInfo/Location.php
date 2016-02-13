@@ -522,7 +522,7 @@ class Location extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -605,6 +605,22 @@ class Location extends \Protobuf\AbstractMessage
         $this->leading_comments = null;
         $this->trailing_comments = null;
         $this->leading_detached_comments = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\SourceCodeInfo\Location) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->path = $message->path ?: $this->path;
+        $this->span = $message->span ?: $this->span;
+        $this->leading_comments = $message->leading_comments ?: $this->leading_comments;
+        $this->trailing_comments = $message->trailing_comments ?: $this->trailing_comments;
+        $this->leading_detached_comments = $message->leading_detached_comments ?: $this->leading_detached_comments;
     }
 
 

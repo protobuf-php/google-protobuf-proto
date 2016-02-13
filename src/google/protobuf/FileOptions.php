@@ -1127,7 +1127,7 @@ class FileOptions extends \Protobuf\AbstractMessage
             $extension  = $extensions ? $extensions->findByNumber(__CLASS__, $tag) : null;
 
             if ($extension !== null) {
-                $this->extensions()->put($extension, $extension->readFrom($context, $wire));
+                $this->extensions()->add($extension, $extension->readFrom($context, $wire));
 
                 continue;
             }
@@ -1265,6 +1265,33 @@ class FileOptions extends \Protobuf\AbstractMessage
         $this->csharp_namespace = null;
         $this->javanano_use_deprecated_package = null;
         $this->uninterpreted_option = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(\Protobuf\Message $message)
+    {
+        if ( ! $message instanceof \google\protobuf\FileOptions) {
+            throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
+        }
+
+        $this->java_package = $message->java_package ?: $this->java_package;
+        $this->java_outer_classname = $message->java_outer_classname ?: $this->java_outer_classname;
+        $this->java_multiple_files = $message->java_multiple_files ?: $this->java_multiple_files;
+        $this->java_generate_equals_and_hash = $message->java_generate_equals_and_hash ?: $this->java_generate_equals_and_hash;
+        $this->java_string_check_utf8 = $message->java_string_check_utf8 ?: $this->java_string_check_utf8;
+        $this->optimize_for = $message->optimize_for ?: $this->optimize_for;
+        $this->go_package = $message->go_package ?: $this->go_package;
+        $this->cc_generic_services = $message->cc_generic_services ?: $this->cc_generic_services;
+        $this->java_generic_services = $message->java_generic_services ?: $this->java_generic_services;
+        $this->py_generic_services = $message->py_generic_services ?: $this->py_generic_services;
+        $this->deprecated = $message->deprecated ?: $this->deprecated;
+        $this->cc_enable_arenas = $message->cc_enable_arenas ?: $this->cc_enable_arenas;
+        $this->objc_class_prefix = $message->objc_class_prefix ?: $this->objc_class_prefix;
+        $this->csharp_namespace = $message->csharp_namespace ?: $this->csharp_namespace;
+        $this->javanano_use_deprecated_package = $message->javanano_use_deprecated_package ?: $this->javanano_use_deprecated_package;
+        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
     }
 
 
