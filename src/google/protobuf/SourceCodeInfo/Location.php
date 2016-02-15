@@ -616,11 +616,11 @@ class Location extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->path = $message->path ?: $this->path;
-        $this->span = $message->span ?: $this->span;
-        $this->leading_comments = $message->leading_comments ?: $this->leading_comments;
-        $this->trailing_comments = $message->trailing_comments ?: $this->trailing_comments;
-        $this->leading_detached_comments = $message->leading_detached_comments ?: $this->leading_detached_comments;
+        $this->path = ($message->path !== null) ? $message->path : $this->path;
+        $this->span = ($message->span !== null) ? $message->span : $this->span;
+        $this->leading_comments = ($message->leading_comments !== null) ? $message->leading_comments : $this->leading_comments;
+        $this->trailing_comments = ($message->trailing_comments !== null) ? $message->trailing_comments : $this->trailing_comments;
+        $this->leading_detached_comments = ($message->leading_detached_comments !== null) ? $message->leading_detached_comments : $this->leading_detached_comments;
     }
 
 

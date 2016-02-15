@@ -363,8 +363,8 @@ class EnumValueOptions extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->deprecated = $message->deprecated ?: $this->deprecated;
-        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
+        $this->deprecated = ($message->deprecated !== null) ? $message->deprecated : $this->deprecated;
+        $this->uninterpreted_option = ($message->uninterpreted_option !== null) ? $message->uninterpreted_option : $this->uninterpreted_option;
     }
 
 

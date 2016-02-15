@@ -287,7 +287,7 @@ class FileDescriptorSet extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->file = $message->file ?: $this->file;
+        $this->file = ($message->file !== null) ? $message->file : $this->file;
     }
 
 

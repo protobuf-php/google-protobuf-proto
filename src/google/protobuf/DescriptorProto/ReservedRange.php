@@ -315,8 +315,8 @@ class ReservedRange extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->start = $message->start ?: $this->start;
-        $this->end = $message->end ?: $this->end;
+        $this->start = ($message->start !== null) ? $message->start : $this->start;
+        $this->end = ($message->end !== null) ? $message->end : $this->end;
     }
 
 

@@ -1276,22 +1276,22 @@ class FileOptions extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->java_package = $message->java_package ?: $this->java_package;
-        $this->java_outer_classname = $message->java_outer_classname ?: $this->java_outer_classname;
-        $this->java_multiple_files = $message->java_multiple_files ?: $this->java_multiple_files;
-        $this->java_generate_equals_and_hash = $message->java_generate_equals_and_hash ?: $this->java_generate_equals_and_hash;
-        $this->java_string_check_utf8 = $message->java_string_check_utf8 ?: $this->java_string_check_utf8;
-        $this->optimize_for = $message->optimize_for ?: $this->optimize_for;
-        $this->go_package = $message->go_package ?: $this->go_package;
-        $this->cc_generic_services = $message->cc_generic_services ?: $this->cc_generic_services;
-        $this->java_generic_services = $message->java_generic_services ?: $this->java_generic_services;
-        $this->py_generic_services = $message->py_generic_services ?: $this->py_generic_services;
-        $this->deprecated = $message->deprecated ?: $this->deprecated;
-        $this->cc_enable_arenas = $message->cc_enable_arenas ?: $this->cc_enable_arenas;
-        $this->objc_class_prefix = $message->objc_class_prefix ?: $this->objc_class_prefix;
-        $this->csharp_namespace = $message->csharp_namespace ?: $this->csharp_namespace;
-        $this->javanano_use_deprecated_package = $message->javanano_use_deprecated_package ?: $this->javanano_use_deprecated_package;
-        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
+        $this->java_package = ($message->java_package !== null) ? $message->java_package : $this->java_package;
+        $this->java_outer_classname = ($message->java_outer_classname !== null) ? $message->java_outer_classname : $this->java_outer_classname;
+        $this->java_multiple_files = ($message->java_multiple_files !== null) ? $message->java_multiple_files : $this->java_multiple_files;
+        $this->java_generate_equals_and_hash = ($message->java_generate_equals_and_hash !== null) ? $message->java_generate_equals_and_hash : $this->java_generate_equals_and_hash;
+        $this->java_string_check_utf8 = ($message->java_string_check_utf8 !== null) ? $message->java_string_check_utf8 : $this->java_string_check_utf8;
+        $this->optimize_for = ($message->optimize_for !== null) ? $message->optimize_for : $this->optimize_for;
+        $this->go_package = ($message->go_package !== null) ? $message->go_package : $this->go_package;
+        $this->cc_generic_services = ($message->cc_generic_services !== null) ? $message->cc_generic_services : $this->cc_generic_services;
+        $this->java_generic_services = ($message->java_generic_services !== null) ? $message->java_generic_services : $this->java_generic_services;
+        $this->py_generic_services = ($message->py_generic_services !== null) ? $message->py_generic_services : $this->py_generic_services;
+        $this->deprecated = ($message->deprecated !== null) ? $message->deprecated : $this->deprecated;
+        $this->cc_enable_arenas = ($message->cc_enable_arenas !== null) ? $message->cc_enable_arenas : $this->cc_enable_arenas;
+        $this->objc_class_prefix = ($message->objc_class_prefix !== null) ? $message->objc_class_prefix : $this->objc_class_prefix;
+        $this->csharp_namespace = ($message->csharp_namespace !== null) ? $message->csharp_namespace : $this->csharp_namespace;
+        $this->javanano_use_deprecated_package = ($message->javanano_use_deprecated_package !== null) ? $message->javanano_use_deprecated_package : $this->javanano_use_deprecated_package;
+        $this->uninterpreted_option = ($message->uninterpreted_option !== null) ? $message->uninterpreted_option : $this->uninterpreted_option;
     }
 
 

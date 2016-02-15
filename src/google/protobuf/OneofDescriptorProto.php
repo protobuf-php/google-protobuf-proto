@@ -251,7 +251,7 @@ class OneofDescriptorProto extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
     }
 
 

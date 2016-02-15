@@ -841,16 +841,16 @@ class FieldDescriptorProto extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
-        $this->number = $message->number ?: $this->number;
-        $this->label = $message->label ?: $this->label;
-        $this->type = $message->type ?: $this->type;
-        $this->type_name = $message->type_name ?: $this->type_name;
-        $this->extendee = $message->extendee ?: $this->extendee;
-        $this->default_value = $message->default_value ?: $this->default_value;
-        $this->oneof_index = $message->oneof_index ?: $this->oneof_index;
-        $this->json_name = $message->json_name ?: $this->json_name;
-        $this->options = $message->options ?: $this->options;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
+        $this->number = ($message->number !== null) ? $message->number : $this->number;
+        $this->label = ($message->label !== null) ? $message->label : $this->label;
+        $this->type = ($message->type !== null) ? $message->type : $this->type;
+        $this->type_name = ($message->type_name !== null) ? $message->type_name : $this->type_name;
+        $this->extendee = ($message->extendee !== null) ? $message->extendee : $this->extendee;
+        $this->default_value = ($message->default_value !== null) ? $message->default_value : $this->default_value;
+        $this->oneof_index = ($message->oneof_index !== null) ? $message->oneof_index : $this->oneof_index;
+        $this->json_name = ($message->json_name !== null) ? $message->json_name : $this->json_name;
+        $this->options = ($message->options !== null) ? $message->options : $this->options;
     }
 
 

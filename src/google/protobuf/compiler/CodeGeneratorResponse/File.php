@@ -379,9 +379,9 @@ class File extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
-        $this->insertion_point = $message->insertion_point ?: $this->insertion_point;
-        $this->content = $message->content ?: $this->content;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
+        $this->insertion_point = ($message->insertion_point !== null) ? $message->insertion_point : $this->insertion_point;
+        $this->content = ($message->content !== null) ? $message->content : $this->content;
     }
 
 

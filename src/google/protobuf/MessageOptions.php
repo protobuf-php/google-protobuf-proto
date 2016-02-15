@@ -559,11 +559,11 @@ class MessageOptions extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->message_set_wire_format = $message->message_set_wire_format ?: $this->message_set_wire_format;
-        $this->no_standard_descriptor_accessor = $message->no_standard_descriptor_accessor ?: $this->no_standard_descriptor_accessor;
-        $this->deprecated = $message->deprecated ?: $this->deprecated;
-        $this->map_entry = $message->map_entry ?: $this->map_entry;
-        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
+        $this->message_set_wire_format = ($message->message_set_wire_format !== null) ? $message->message_set_wire_format : $this->message_set_wire_format;
+        $this->no_standard_descriptor_accessor = ($message->no_standard_descriptor_accessor !== null) ? $message->no_standard_descriptor_accessor : $this->no_standard_descriptor_accessor;
+        $this->deprecated = ($message->deprecated !== null) ? $message->deprecated : $this->deprecated;
+        $this->map_entry = ($message->map_entry !== null) ? $message->map_entry : $this->map_entry;
+        $this->uninterpreted_option = ($message->uninterpreted_option !== null) ? $message->uninterpreted_option : $this->uninterpreted_option;
     }
 
 

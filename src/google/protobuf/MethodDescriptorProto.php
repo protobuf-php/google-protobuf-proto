@@ -596,12 +596,12 @@ class MethodDescriptorProto extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
-        $this->input_type = $message->input_type ?: $this->input_type;
-        $this->output_type = $message->output_type ?: $this->output_type;
-        $this->options = $message->options ?: $this->options;
-        $this->client_streaming = $message->client_streaming ?: $this->client_streaming;
-        $this->server_streaming = $message->server_streaming ?: $this->server_streaming;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
+        $this->input_type = ($message->input_type !== null) ? $message->input_type : $this->input_type;
+        $this->output_type = ($message->output_type !== null) ? $message->output_type : $this->output_type;
+        $this->options = ($message->options !== null) ? $message->options : $this->options;
+        $this->client_streaming = ($message->client_streaming !== null) ? $message->client_streaming : $this->client_streaming;
+        $this->server_streaming = ($message->server_streaming !== null) ? $message->server_streaming : $this->server_streaming;
     }
 
 

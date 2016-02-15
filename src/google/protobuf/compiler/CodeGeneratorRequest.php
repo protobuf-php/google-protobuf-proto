@@ -441,9 +441,9 @@ class CodeGeneratorRequest extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->file_to_generate = $message->file_to_generate ?: $this->file_to_generate;
-        $this->parameter = $message->parameter ?: $this->parameter;
-        $this->proto_file = $message->proto_file ?: $this->proto_file;
+        $this->file_to_generate = ($message->file_to_generate !== null) ? $message->file_to_generate : $this->file_to_generate;
+        $this->parameter = ($message->parameter !== null) ? $message->parameter : $this->parameter;
+        $this->proto_file = ($message->proto_file !== null) ? $message->proto_file : $this->proto_file;
     }
 
 

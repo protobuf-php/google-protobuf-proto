@@ -329,8 +329,8 @@ class NamePart extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name_part = $message->name_part ?: $this->name_part;
-        $this->is_extension = $message->is_extension ?: $this->is_extension;
+        $this->name_part = ($message->name_part !== null) ? $message->name_part : $this->name_part;
+        $this->is_extension = ($message->is_extension !== null) ? $message->is_extension : $this->is_extension;
     }
 
 

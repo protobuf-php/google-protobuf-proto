@@ -287,7 +287,7 @@ class SourceCodeInfo extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->location = $message->location ?: $this->location;
+        $this->location = ($message->location !== null) ? $message->location : $this->location;
     }
 
 

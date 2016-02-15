@@ -391,9 +391,9 @@ class EnumValueDescriptorProto extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
-        $this->number = $message->number ?: $this->number;
-        $this->options = $message->options ?: $this->options;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
+        $this->number = ($message->number !== null) ? $message->number : $this->number;
+        $this->options = ($message->options !== null) ? $message->options : $this->options;
     }
 
 

@@ -1202,18 +1202,18 @@ class FileDescriptorProto extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
-        $this->package = $message->package ?: $this->package;
-        $this->dependency = $message->dependency ?: $this->dependency;
-        $this->public_dependency = $message->public_dependency ?: $this->public_dependency;
-        $this->weak_dependency = $message->weak_dependency ?: $this->weak_dependency;
-        $this->message_type = $message->message_type ?: $this->message_type;
-        $this->enum_type = $message->enum_type ?: $this->enum_type;
-        $this->service = $message->service ?: $this->service;
-        $this->extension = $message->extension ?: $this->extension;
-        $this->options = $message->options ?: $this->options;
-        $this->source_code_info = $message->source_code_info ?: $this->source_code_info;
-        $this->syntax = $message->syntax ?: $this->syntax;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
+        $this->package = ($message->package !== null) ? $message->package : $this->package;
+        $this->dependency = ($message->dependency !== null) ? $message->dependency : $this->dependency;
+        $this->public_dependency = ($message->public_dependency !== null) ? $message->public_dependency : $this->public_dependency;
+        $this->weak_dependency = ($message->weak_dependency !== null) ? $message->weak_dependency : $this->weak_dependency;
+        $this->message_type = ($message->message_type !== null) ? $message->message_type : $this->message_type;
+        $this->enum_type = ($message->enum_type !== null) ? $message->enum_type : $this->enum_type;
+        $this->service = ($message->service !== null) ? $message->service : $this->service;
+        $this->extension = ($message->extension !== null) ? $message->extension : $this->extension;
+        $this->options = ($message->options !== null) ? $message->options : $this->options;
+        $this->source_code_info = ($message->source_code_info !== null) ? $message->source_code_info : $this->source_code_info;
+        $this->syntax = ($message->syntax !== null) ? $message->syntax : $this->syntax;
     }
 
 

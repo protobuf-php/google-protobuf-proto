@@ -676,13 +676,13 @@ class UninterpretedOption extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
-        $this->identifier_value = $message->identifier_value ?: $this->identifier_value;
-        $this->positive_int_value = $message->positive_int_value ?: $this->positive_int_value;
-        $this->negative_int_value = $message->negative_int_value ?: $this->negative_int_value;
-        $this->double_value = $message->double_value ?: $this->double_value;
-        $this->string_value = $message->string_value ?: $this->string_value;
-        $this->aggregate_value = $message->aggregate_value ?: $this->aggregate_value;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
+        $this->identifier_value = ($message->identifier_value !== null) ? $message->identifier_value : $this->identifier_value;
+        $this->positive_int_value = ($message->positive_int_value !== null) ? $message->positive_int_value : $this->positive_int_value;
+        $this->negative_int_value = ($message->negative_int_value !== null) ? $message->negative_int_value : $this->negative_int_value;
+        $this->double_value = ($message->double_value !== null) ? $message->double_value : $this->double_value;
+        $this->string_value = ($message->string_value !== null) ? $message->string_value : $this->string_value;
+        $this->aggregate_value = ($message->aggregate_value !== null) ? $message->aggregate_value : $this->aggregate_value;
     }
 
 

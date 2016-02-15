@@ -693,13 +693,13 @@ class FieldOptions extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->ctype = $message->ctype ?: $this->ctype;
-        $this->packed = $message->packed ?: $this->packed;
-        $this->jstype = $message->jstype ?: $this->jstype;
-        $this->lazy = $message->lazy ?: $this->lazy;
-        $this->deprecated = $message->deprecated ?: $this->deprecated;
-        $this->weak = $message->weak ?: $this->weak;
-        $this->uninterpreted_option = $message->uninterpreted_option ?: $this->uninterpreted_option;
+        $this->ctype = ($message->ctype !== null) ? $message->ctype : $this->ctype;
+        $this->packed = ($message->packed !== null) ? $message->packed : $this->packed;
+        $this->jstype = ($message->jstype !== null) ? $message->jstype : $this->jstype;
+        $this->lazy = ($message->lazy !== null) ? $message->lazy : $this->lazy;
+        $this->deprecated = ($message->deprecated !== null) ? $message->deprecated : $this->deprecated;
+        $this->weak = ($message->weak !== null) ? $message->weak : $this->weak;
+        $this->uninterpreted_option = ($message->uninterpreted_option !== null) ? $message->uninterpreted_option : $this->uninterpreted_option;
     }
 
 

@@ -1123,16 +1123,16 @@ class DescriptorProto extends \Protobuf\AbstractMessage
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s must be a %s, %s given', __METHOD__, __CLASS__, get_class($message)));
         }
 
-        $this->name = $message->name ?: $this->name;
-        $this->field = $message->field ?: $this->field;
-        $this->extension = $message->extension ?: $this->extension;
-        $this->nested_type = $message->nested_type ?: $this->nested_type;
-        $this->enum_type = $message->enum_type ?: $this->enum_type;
-        $this->extension_range = $message->extension_range ?: $this->extension_range;
-        $this->oneof_decl = $message->oneof_decl ?: $this->oneof_decl;
-        $this->options = $message->options ?: $this->options;
-        $this->reserved_range = $message->reserved_range ?: $this->reserved_range;
-        $this->reserved_name = $message->reserved_name ?: $this->reserved_name;
+        $this->name = ($message->name !== null) ? $message->name : $this->name;
+        $this->field = ($message->field !== null) ? $message->field : $this->field;
+        $this->extension = ($message->extension !== null) ? $message->extension : $this->extension;
+        $this->nested_type = ($message->nested_type !== null) ? $message->nested_type : $this->nested_type;
+        $this->enum_type = ($message->enum_type !== null) ? $message->enum_type : $this->enum_type;
+        $this->extension_range = ($message->extension_range !== null) ? $message->extension_range : $this->extension_range;
+        $this->oneof_decl = ($message->oneof_decl !== null) ? $message->oneof_decl : $this->oneof_decl;
+        $this->options = ($message->options !== null) ? $message->options : $this->options;
+        $this->reserved_range = ($message->reserved_range !== null) ? $message->reserved_range : $this->reserved_range;
+        $this->reserved_name = ($message->reserved_name !== null) ? $message->reserved_name : $this->reserved_name;
     }
 
 
